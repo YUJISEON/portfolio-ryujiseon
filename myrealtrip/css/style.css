@@ -324,7 +324,10 @@ header a {
     position: relative;
     left: -20px;
     vertical-align: middle;
-    overflow: hidden;
+    /*overflow: hidden;*/
+    width: 100%;
+    height: 100%;
+    border: 1px solid red;
 }
 
 .popularList > div.slide > ul {
@@ -335,6 +338,7 @@ header a {
     padding-bottom: 8px;
     padding-top: 2px;
     padding-left: 20px;
+    border: 1px solid blue;
 }
 
 .popularList > div.slide > ul > li > a {   

@@ -196,7 +196,6 @@ header a {
 .searchBar {
     height: 56px;
     width: 100%;
-    position: relative;
 }
 
 .searchBar img {
@@ -206,10 +205,15 @@ header a {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    left: 90px;
+    left: 85px;
 }
 
-.searchBar button {
+.searchBar.on img {
+    opacity: 1;
+    left: 16px;
+}
+
+.searchBar input {
     background-color: hsla(0,0%,100%,.1);
     border: 1px solid hsla(0,0%,100%,.4);
     color: #fff;
@@ -224,9 +228,24 @@ header a {
     opacity: .8;
 }
 
-.searchBar:hover button {
+.searchBar input::placeholder {
+    color: #fff;
+}
+
+.searchBar:hover input {
     background-color: hsla(0,0%,100%,.2);
 }
+
+.searchBar.on input {
+    background-color: #fff;
+    color: #495056;
+    padding-left: 48px;
+    padding-right: 16px;
+    text-align: left;
+    border: 1px solid hsla(0,0%,100%,.5);
+    opacity: 1;
+}
+
 
 .searchHistory {
     margin-top: 8px;
@@ -236,8 +255,10 @@ header a {
     box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 5px 10px 0 rgba(0,0,0,.12);
     transition: transform .12s ease,opacity .12s ease;
     z-index: 100;
-    display: none;
+    display: none;    
+    position: absolute;
 }
+
 
 .searchHistory a, 
 .searchHistory span {
@@ -276,6 +297,7 @@ header a {
     position: absolute;
     right: 12px;
     bottom: 0;
+    cursor: pointer;
 }
 
 .historyList button {
@@ -290,8 +312,9 @@ header a {
     line-height: 1;
 }
 
-.historyList button.on {
-    background-color: hsla(0,0%,100%,.2);
+.historyList button:hover  {
+    background-color:#f1f3f5;
+    cursor: pointer;
 }
 
 .historyList button img {

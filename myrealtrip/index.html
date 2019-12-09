@@ -47,7 +47,7 @@
                                                 <div class="searchBarcontainer">
                                                         <div class="searchBar">
                                                             <img src="img/search_button.svg" alt="search_button">
-                                                            <button type="button">여행지나 상품을 검색해보세요</button>
+                                                            <input type="search" placeholder="여행지나 상품을 검색해보세요!">
                                                         </div>
                                                         <div class="searchHistory">
                                                                 <div class="Box">
@@ -837,7 +837,18 @@
                 </footer>  
         </div>        
         <script>      
-         
+            
+            // 검색창 도시 검색
+            $('.searchBar').on('click focus', function() {
+                $(this).addClass('on');
+                $('.searchBar').find('img').attr('src', 'img/search_button_on.svg');
+                $('.searchHistory').css({'display' : 'block'});
+            }).on('focusout', function() {
+                $(this).removeClass('on');
+                $('.searchBar').find('img').attr('src', 'img/search_button.svg');
+                $('.searchHistory').css({'display' : 'none'});
+            });
+
             //검색창 인기 도시 슬라이드, 스와이프            
             popularSlide();
             function popularSlide() {

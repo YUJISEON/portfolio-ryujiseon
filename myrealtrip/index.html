@@ -852,8 +852,8 @@
 
                 // 좌우 버튼 초기 셋팅
                 slideControl = Math.round(numPopular / popularStandard);
-                $('.popularList > div.slideBox > ul').attr('data-page', slideControl);
-                console.log('검색창 slidePage : ' + slideControl);
+                $(selector).attr('data-page', slideControl);
+                //console.log('검색창 slidePage : ' + slideControl);
                 if (slideControl < 2 ) {
                     $('.popularListcontrol a').css({'transition':'none', 'visibility':'hidden'});
                 } else {
@@ -875,6 +875,7 @@
                 var offsetX = 0;
                 var delX = 0;
                 var isClickAllowed = true;
+                var isControlOn = true;
 
                 showSlide(slideFrist);
                 
@@ -883,25 +884,24 @@
                     showSlide(slideNext);
                     $('.popularList > div > ul > li:eq(' + (popularStandard - 1) + ') a').css({'margin-right': '40px'});
                     $('.popularList .prev').css({'visibility': 'visible'});
-                    $('.popularList .next').css({'visibility': 'hidden'});
+                    $(this).css({'visibility': 'hidden'});
                 });
 
                 $('.popularList .prev').on('click', function(e) {
                     e.preventDefault();
                     showSlide(slidePrev);
                     $('.popularList .next').css({'visibility': 'visible'});
-                    $('.popularList .prev').css({'visibility': 'hidden'});
+                    $(this).css({'visibility': 'hidden'});
                 });
 
                 // 스와이프 
                 $(selector).on('mousedown', function(e) {
-                        console.log('히이');
                         if (numImages > popularStandard) {
                                 e.preventDefault();
                                 $(this).css({'transition': 'none'}); 
                                 startX = e.clientX;
                                 offsetX = $(this).position().left;
-                                console.log(startX + ' / ' + offsetX);
+                                //console.log(startX + ' / ' + offsetX);
                                 $(document).on('mousemove', function(e) {
                                     delX = e.clientX - startX;     
                                     if (Math.abs(delX) > 5) isClickAllowed = false;                 
@@ -909,15 +909,19 @@
                                         delX = delX / 5; 
                                     }
                                     $(selector).css({'transition' : 'none', 'left' : (offsetX + delX) + 'px'});
-                                    console.log("delX : " + delX);
+                                    //console.log("delX : " + delX);
                                 });
                                 $(document).on('mouseup', function() {
                                     $(document).off('mousemove mouseup');
                                     if ( (delX > 50) && (slideNow !== 1) ) {
                                         showSlide(slidePrev);
+                                        $('.popularList .next').css({'visibility': 'visible'});
+                                        $('.popularList .prev').css({'visibility': 'hidden'});
                                     } else if ( (delX < -50) && (slideNow !== numSlide) ) {
                                         showSlide(slideNext);
                                         $(selector).find('li:eq(' + (popularStandard - 1) + ') a').css({'margin-right': '40px'});
+                                        $('.popularList .prev').css({'visibility': 'visible'});
+                                        $('.popularList .next').css({'visibility': 'hidden'});
                                     } else {
                                         showSlide(slideNow);
                                     }   
@@ -932,11 +936,11 @@
 
                 function showSlide(n) { 
                     $(selector).css({'transition':'.3s', 'left': ((-(n - 1)) * 100) + '%'});
-                    console.log('슬라이드 위치 : ' + $(selector).position().left);
+                    console.log('검색창 슬라이드 위치 : ' + $(selector).position().left);
                     slideNow = n;
                     slidePrev = (n - 1) < 1 ? 1 : (n - 1);
                     slideNext = (n + 1) > numSlide ? numSlide : (n + 1);
-                    console.log('검색창 슬라이드 : ' + slidePrev + ' / ' + slideNow + ' / ' + slideNext);                
+                    console.log('검색창 슬라이드 : [' + numSlide + '] ' + slidePrev + ' / ' + slideNow + ' / ' + slideNext);                
 
                 }
             }       
@@ -1173,9 +1177,13 @@
                                         $(document).off('mousemove mouseup');                             
                                         if ( (delX > 50) && (slideNow !== 1) ) {
                                             showSlide(slidePrev);
+                                            $(selector).find('.product_item p.next').css({'visibility': 'visible'});
+                                            $(selector).find('.product_item p.prev').css({'visibility': 'hidden'});
                                         } else if ( (delX < -50) && (slideNow !== numSlide) ) {
                                             showSlide(slideNext);
                                             $(selector).find('.product_item > .slideBox > ul > li:eq(' + (slideStandard - 1) + ') a').css({'margin-right': '40px'});
+                                            $(selector).find('.product_item > p.prev').css({'visibility': 'visible'});
+                                            $(selector).find('.product_item > p.next').css({'visibility': 'hidden'});
                                         } else {
                                             showSlide(slideNow);
                                         }                                           

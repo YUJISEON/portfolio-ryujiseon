@@ -324,10 +324,9 @@ header a {
     position: relative;
     left: -20px;
     vertical-align: middle;
-    /*overflow: hidden;*/
+    overflow: hidden;
     width: 100%;
     height: 100%;
-    border: 1px solid red;
 }
 
 .popularList > div.slide > ul {
@@ -338,13 +337,12 @@ header a {
     padding-bottom: 8px;
     padding-top: 2px;
     padding-left: 20px;
-    border: 1px solid blue;
 }
 
 .popularList > div.slide > ul > li > a {   
     background-position: 50%;
     background-size: cover;
-    box-shadow: 0 3px 6px 0 rgba(0,0,0,.3), 0 0 1px 0 rgba(0,0,0,.3); 
+    box-shadow: 5px 3px 6px 0 rgba(0,0,0,.3), 1px 0 1px 0 rgba(0,0,0,.3); 
     border-radius: 4px;
     display: inline-block;
     height: 107px;
@@ -356,7 +354,7 @@ header a {
 }
 
 .popularList > div.slide > ul > li > a:hover {
-    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.3),0 0 1px 0 rgba(0,0,0,0.3);
+    box-shadow: 5px 5px 8px 0 rgba(0,0,0,0.3), 1px 0 1px 0 rgba(0,0,0,0.3);
 }
 
 .popularList > div.slide > ul > li > a > div {

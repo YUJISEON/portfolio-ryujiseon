@@ -821,11 +821,19 @@
                                                 <div class="snsLine"></div>
                                                 <li><a href="#"><img src="img/footer_apple.svg" alt="footer_apple"></a></li>
                                                 <li><a href="#"><img src="img/footer_store.svg" alt="footer_store"></a></li>
-                                                <button type="button"><img src="img/butlan2.svg" alt="korealang"><span>한국어</span><img src="img/butlan.svg" alt="langnext"></button>
+                                                <div class="language">
+                                                    <button class="langBox" type="button"><img src="img/butlan2.svg" alt="korealang"><span>한국어</span><img src="img/butlan.svg" alt="langnext"></button>
+                                                    <div class="langPopup">
+                                                        <ul>
+                                                            <li class="on"><button type="button"><span>한국어</span><img src="img/lancheck.svg" alt="lancheck"></button></li>
+                                                            <li><button type="button"><span>English</span></button></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                             </ul>  
                                         </div>
                                         <div class="copyright">
-                                            <p>상호명 (주)마이리얼트립 | 대표 홍길동 | 개인정보보호책임자 홍길동 | 사업자등록번호 123-45-6789 사업자정보확인 | 통신판매업신고번호 2019-서울서초-1234</p>
+                                            <p>상호명 (주)마이리얼트립 | 대표 홍길동 | 개인정보보호책임자 홍길동 | 사업자등록번호 123-45-6789 <a href="#">사업자정보확인</a> | 통신판매업신고번호 2019-서울서초-1234</p>
                                             <br>
                                             <p>주소 서울특별시 서초구 강남대로 327, 대륭서초타워 18층(서초동) | 이메일 help@myrealtrip.com | 마케팅/제휴 문의 marketing@myrealtrip.com</p>
                                             <br>
@@ -1219,6 +1227,20 @@
                 }
             }
 
+            // 푸터 언어 박스 
+            var langCheck = false;
+            $('.langBox').on('click', function() {                
+                if (langCheck === false) {
+                    $('.langPopup').addClass('on');
+                    langCheck = true;
+                } else {
+                    $('.langPopup').removeClass('on');
+                    langCheck = false;
+                }
+            }).on('focusout', function() {
+                $('.langPopup').removeClass('on');
+                    langCheck = false;
+            });
 
         </script>
 </body>

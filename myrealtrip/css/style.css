@@ -1185,18 +1185,18 @@ footer {
     width: 50%;
 }
 
-.footerBottom .snslist ul {
+.footerBottom .snslist > ul {
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 
-.footerBottom .snslist ul li,
+.footerBottom .snslist > ul > li,
 .footerBottom .snslist .snsLine {
     margin-right: 20px;
 }
 
-.footerBottom .snslist ul li:last-child {
+.footerBottom .snslist > ul > li:nth-child(7) {
     margin-right: 0;
 }
 
@@ -1206,18 +1206,22 @@ footer {
     background-color: #ced4da;
 }
 
-.footerBottom .snslist li img {
+.footerBottom .snslist > ul > li img {
     width: 20px;
     height: 20px;
     transition: opacity .2s ease;    
     vertical-align: middle;
 }
 
-.footerBottom .snslist li a:hover img {
+.footerBottom .snslist l> ul > li a:hover img {
     opacity: .5;
 }
 
-.footerBottom .snslist button {
+.language {
+    position: relative;
+}
+
+.footerBottom .snslist button.langBox {
     margin-left: 28px;
     width: 118px;
     height: 40px;
@@ -1232,22 +1236,110 @@ footer {
     cursor: pointer;
 }
 
-.footerBottom .snslist button > img:nth-child(1) {
+.footerBottom .snslist button.langBox > img:nth-child(1) {
     width: 24px;
     height: 24px;
     margin-right: 4px;
 }
 
-.footerBottom .snslist button  > span {
+.footerBottom .snslist button.langBox  > span {
     font-size: 14px;
     font-weight: 500;
     color: #848c94;
     vertical-align: top;
 }
 
-.footerBottom .snslist button > img:nth-child(2) {
+.footerBottom .snslist button.langBox > img:nth-child(2) {
     width: 16px;
     height: 16px;
+}
+
+.footerBottom .snslist .langPopup {
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 12px);
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 5px 10px 0 rgba(0,0,0,.12);
+    display: none;
+    opacity: 0;
+    -ms-transform: scale(.5);
+    transform: scale(.5);
+    -ms-transform-origin: top;
+    transform-origin: top;
+    transition: transform .12s ease, opacity .12s ease;
+    z-index: 100;
+}
+
+.footerBottom .snslist .langPopup.on {
+    opacity: 1;
+    transform: scale(1);
+    display: block;
+}
+
+.footerBottom .snslist .langPopup ul {
+    width: 160px;
+    padding: 6px 0;
+    margin-bottom: 0;
+}
+
+.footerBottom .snslist .langPopup ul li {
+    font-size: 15px;
+    font-weight: 500;
+    color: #343a40;
+    width: 100%;        
+}
+
+.footerBottom .snslist .langPopup ul li button {
+    width: 100%;
+    height: 34px;
+    padding: 0 16px;
+    outline: none;
+    border: 0;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color .2s ease;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.footerBottom .snslist .langPopup ul li button:hover {
+    background-color:#f1f3f5;
+}
+
+.footerBottom .snslist .langPopup ul li button span {
+    font-size: 15px;
+    font-weight: 500;
+    color: #343a40;
+    text-align: left;
+}
+
+.footerBottom .snslist .langPopup ul li.on button span {
+    color: #2b96ed;
+}
+
+.footerBottom .snslist .langPopup ul li button img {
+    width: 16px;
+    height: 16px;
+    border-width: 0;
+    vertical-align: middle;
+    /*display: none;*/
+}
+
+.footerBottom .snslist .langPopup ul li.on button img {
+    
+    display: block;
+}
+
+.footerBottom .copyright {
+    margin: 16px 0 0;
+}
+
+.footerBottom .copyright a {
+    color: #666d75;
+    font-weight: 500;
 }
 
 .footerBottom .copyright p {
@@ -1257,5 +1349,4 @@ footer {
     letter-spacing: -.2px;
     line-height: 1.67;
     text-align: left;
-    margin: 16px 0 0;
 }

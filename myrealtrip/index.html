@@ -80,11 +80,11 @@
                                                                 </div>
                                                         </div>
                                                 </div>
-                                                <div class="popularList">
-                                                        <p class="popularListcontrol prev">
+                                                <div class="popular_item">
+                                                        <p class="itemcontrol prev">
                                                             <a href="#" class="prev"><img src="img/prev.svg" alt="prev"></a>
                                                         </p>
-                                                            <div class="slide">
+                                                        <div class="slideBox">
                                                                 <ul data-page="">
                                                                     <li><a href="#"><div></div><span>두브로브니크</span></a></li>
                                                                     <li><a href="#"><div></div><span>크로아티아</span></a></li>
@@ -99,9 +99,9 @@
                                                                     <li><a href="#"><div></div><span>로마</span></a></li>
                                                                     <li><a href="#"><span>전체 여행지</span></a></li>
                                                                 </ul>
-                                                            </div> 
-                                                        <p class="popularListcontrol next">
-                                                                <a href="#" class="next"><img src="img/next.svg" alt="next"></a>
+                                                        </div> 
+                                                        <p class="itemcontrol next">
+                                                            <a href="#" class="next"><img src="img/next.svg" alt="next"></a>
                                                         </p>
                                                 </div>
                                 </div>        
@@ -857,114 +857,6 @@
                 $('.searchHistory').css({'display' : 'none'});
             });
 
-            //검색창 인기 도시 슬라이드, 스와이프            
-            popularSlide();
-            function popularSlide() {
-                var selector = $('.searchContainer .container .popularList .slide ul');
-                var numPopular = $('.popularList > div > ul > li').length;
-                var popularStandard = 6;                
-                var widthV = $('.container').width();
-                var slideControl = 0;
-
-                console.log('widthV : ' + widthV);
-                $('.popularList > div').width(((widthV + 40) + 'px'));
-
-                // 좌우 버튼 초기 셋팅
-                slideControl = Math.round(numPopular / popularStandard);
-                $(selector).attr('data-page', slideControl);
-                //console.log('검색창 slidePage : ' + slideControl);
-                if (slideControl < 2 ) {
-                    $('.popularListcontrol a').css({'transition':'none', 'visibility':'hidden'});
-                } else {
-                    $('.popularList .next').css({'transition':'none', 'visibility':'visible'});
-                } 
-                
-                // 배경 이미지 셋팅
-                for (var i=0 ; i < numPopular ; i++) {
-                    $('.popularList > div > ul > li:eq(' + i + ') > a').css({'background-image' : 'url("img/search_img' + (i + 1) + '.jpg")'});
-                }
-
-                var numSlide = $(selector).attr('data-page');
-                var numImages = $(selector).find('li').length;
-                var slideNow = 0;
-                var slidePrev = 0;
-                var slideNext = 0;
-                var slideFrist = 1;
-                var startX = 0;
-                var offsetX = 0;
-                var delX = 0;
-                var isClickAllowed = true;
-                var isControlOn = true;
-
-                showSlide(slideFrist);
-                
-                $('.popularList .next').on('click', function(e) {
-                    e.preventDefault();
-                    showSlide(slideNext);
-                    $('.popularList > div > ul > li:eq(' + (popularStandard - 1) + ') a').css({'margin-right': '40px'});
-                    $('.popularList .prev').css({'visibility': 'visible'});
-                    $(this).css({'visibility': 'hidden'});
-                });
-
-                $('.popularList .prev').on('click', function(e) {
-                    e.preventDefault();
-                    showSlide(slidePrev);
-                    $('.popularList .next').css({'visibility': 'visible'});
-                    $(this).css({'visibility': 'hidden'});
-                });
-
-                // 스와이프 
-                $(selector).on('mousedown', function(e) {
-                        if (numImages > popularStandard) {
-                                e.preventDefault();
-                                $(this).css({'transition': 'none'}); 
-                                startX = e.clientX;
-                                offsetX = $(this).position().left;
-                                //console.log(startX + ' / ' + offsetX);
-                                $(document).on('mousemove', function(e) {
-                                    delX = e.clientX - startX;     
-                                    if (Math.abs(delX) > 5) isClickAllowed = false;                 
-                                    if ((delX > 0 && slideNow === 1) || (delX < 0 && slideNow === numSlide)) {
-                                        delX = delX / 5; 
-                                    }
-                                    $(selector).css({'transition' : 'none', 'left' : (offsetX + delX) + 'px'});
-                                    //console.log("delX : " + delX);
-                                });
-                                $(document).on('mouseup', function() {
-                                    $(document).off('mousemove mouseup');
-                                    if ( (delX > 50) && (slideNow !== 1) ) {
-                                        showSlide(slidePrev);
-                                        $('.popularList .next').css({'visibility': 'visible'});
-                                        $('.popularList .prev').css({'visibility': 'hidden'});
-                                    } else if ( (delX < -50) && (slideNow !== numSlide) ) {
-                                        showSlide(slideNext);
-                                        $(selector).find('li:eq(' + (popularStandard - 1) + ') a').css({'margin-right': '40px'});
-                                        $('.popularList .prev').css({'visibility': 'visible'});
-                                        $('.popularList .next').css({'visibility': 'hidden'});
-                                    } else {
-                                        showSlide(slideNow);
-                                    }   
-                                });
-                        }
-                }).on('click', function(e) {        
-                        if (isClickAllowed === false) {          
-                            e.preventDefault();
-                            isClickAllowed = true;        
-                        }    
-                });
-
-                function showSlide(n) { 
-                    $(selector).css({'transition':'.3s', 'left': ((-(n - 1)) * 100) + '%'});
-                    console.log('검색창 슬라이드 위치 : ' + $(selector).position().left);
-                    slideNow = n;
-                    slidePrev = (n - 1) < 1 ? 1 : (n - 1);
-                    slideNext = (n + 1) > numSlide ? numSlide : (n + 1);
-                    console.log('검색창 슬라이드 : [' + numSlide + '] ' + slidePrev + ' / ' + slideNow + ' / ' + slideNext);                
-
-                }
-            }       
-            
-
             //배너 이미지 슬라이드, 스와이프, 타이머
             bannerslide();
             function bannerslide() {
@@ -975,7 +867,7 @@
                 var slideFrist = 1;
                 var timerId = '';
                 var timterSpeed = 3000;
-                var isTimerOn = true;
+                var isTimerOn = false;
                 var startX = 0;
                 var offsetX = 0;
                 var delX = 0;
@@ -1094,138 +986,156 @@
                 
             }
             
-            // 상품 판매 리스트 
-            product();
-            function product() {
-                var slideStandard = 4;
-                var slidePage = 0;
-                var slideBoxW = $('.container').width();
-                var slideBoxH = $('.product_item').height();
 
-                $('.product_item .slideBox').width(((slideBoxW + 40) + 'px'));
-                $('.product_item .slideBox').height(((slideBoxH + 20) + 'px'));
-                
-                $('.productContainer .productBox').each(function() {
-                    var numImg = ($(this).find('.productImg').length);
-                    var numTarget = $(this).attr('class');
-                    var arraryClass = numTarget.split(' ');
-                    var leftValues = $('.product_item .slideBox > ul > li > a').outerWidth(true);
-                    var numProductContainer = $('.product_item .slideBox > ul').length;
-                    console.log('leftValues : ' + leftValues + ' / numProductContainer : ' + numProductContainer);
+            // 슬라이드, 스와이프, 좌우 버튼 사용자 정의 메소드!
+            $.fn.setImageSlide = function(options) {
+                    var settings = $.extend({
+                        slideFirst: 1,
+                        imgStandard: 0,
+                        setContainer: 'product'
+                    }, options);
                     
-                    // 상품 판매 리스트 위치 셋팅
-                    for (var x=0;x<numProductContainer;x++) {
-                        for (var i=0;i<numImg;i++) {
-                            $('.product_item .slideBox > ul:eq(' + x + ') > li:eq(' + (i) +')').css({'left': (i * leftValues) + 'px'});
+                    // 슬라이드, 스와이프
+                    this.each(function() {
+                        var $selector = $(this);
+                        var numSlide = $selector.find('div.slideBox > ul > li').length;                       
+                        var slideNow = 0;
+                        var slideNext = 0;
+                        var slidePrev = 0;
+                        var slideFirst = settings.slideFirst;
+                        var imgStandard = settings.imgStandard;
+                        var setContainer = settings.setContainer;
+                        var startX = 0;
+                        var offsetX = 0;
+                        var delX = 0;
+                        var isClickAllowed = true;
+                        var slidePage = Math.round(numSlide / imgStandard);
+                        $selector.find('div.slideBox > ul').attr('data-page', slidePage);
+                        var numPage = $selector.find('div.slideBox > ul').attr('data-page');
+
+                        console.log("상품 슬라이드 데이터 페이지 " + numSlide + ' / '+ numPage);
+
+                        ///////////////////////////////////////////////////////////////////////////////////////////
+                        /////// 기본 세팅 [ div.slideBox 박스 크기 재설정, 이미지, 좌우 버튼 여부, 페이지 장수] ///////      
+
+                        var slideBoxW = $selector.width();
+                        var slideBoxH = $selector.height();
+                        var marginW = 40;
+                        var marginH = 20;
+                        var leftValues = $selector.find('.slideBox > ul > li > a').outerWidth(true);
+
+                        $selector.find('.slideBox').width(((slideBoxW + marginW) + 'px'));
+                        $selector.find('.slideBox').height(((slideBoxH + marginH) + 'px'));
+                        
+                        // 리스트 위치 셋팅
+                        for (var i=0 ; i < numSlide ; i++) {
+                            $selector.find('.slideBox > ul > li:eq(' + (i) +')').css({'left': (i * leftValues) + 'px'});
                         }
-                    }
 
-                    // 상품 판매 리스트 이미지 셋팅
-                    for (var i=0;i<numImg;i++) {
-                        $(this).find('.productImg:eq(' + i + ')').find('img').attr('src', 'img/' + arraryClass[0] + '_img' + (i + 1) + '.jpg')
-                    }
-
-                    // 좌우 버튼 초기 셋팅
-                    slidePage = Math.round(numImg / slideStandard);
-                    $(this).find('.product_item > .slideBox > ul').attr('data-page', slidePage);
-
-                    console.log('slidePage : ' + slidePage);
-                    if (slidePage < 2 ) {
-                        $(this).find('.product_item .itemcontrol').css({'transition':'none', 'visibility':'hidden'});
-                    } else {
-                        $(this).find('.product_item p.next').css({'transition':'none', 'visibility':'visible'});
-                    } 
-                });
-
-                // 상품 판매 리스트 슬라이드 - 좌/우버튼, 스와이프
-                
-                productShowSlide('.productHistory');
-                productShowSlide('.productMain1');
-                productShowSlide('.productMain2');
-                productShowSlide('.productMain3');
-
-                function productShowSlide(selector) {
-                    var numSlide = $(selector).find('.product_item > .slideBox ul').attr('data-page');
-                    var numImages = $(selector).find('.product_item > .slideBox ul li').length;
-                    var slideNow = 0;
-                    var slidePrev = 0;
-                    var slideNext = 0;
-                    var slideFrist = 1;
-                    var startX = 0;
-                    var offsetX = 0;
-                    var delX = 0;
-                    var isClickAllowed = true;
-
-                    console.log("상품 슬라이드 데이터 페이지 " + numSlide + ' / '+ numImages);
-
-                    showSlide(slideFrist);
-
-                    $(selector).find('.product_item p.next').on('click', function(e) {
-                            e.preventDefault();
-                            showSlide(slideNext);
-                            $(selector).find('.product_item > .slideBox > ul > li:eq(' + (slideStandard - 1) + ') a').css({'margin-right': '40px'});
-                            $(selector).find('.product_item > p.prev').css({'visibility': 'visible'});
-                            $(selector).find('.product_item > p.next').css({'visibility': 'hidden'});
-                    });
-
-                    $(selector).find('.product_item p.prev').on('click', function(e) {
-                            e.preventDefault();
-                            showSlide(slidePrev);
-                            $(selector).find('.product_item p.next').css({'visibility': 'visible'});
-                            $(selector).find('.product_item p.prev').css({'visibility': 'hidden'});
-                    }); 
-                    
-                    // 상품 판매 리스트 스와이프 
-                    $(selector).find('.product_item > .slideBox > ul').on('mousedown', function(e) {
-                            if (numImages > slideStandard) {
-                                    e.preventDefault();
-                                    $(this).css({'transition': 'none'}); 
-                                    startX = e.clientX;
-                                    offsetX = $(this).position().left;
-                                    console.log(startX + ' / ' + offsetX);
-                                    $(document).on('mousemove', function(e) {
-                                        delX = e.clientX - startX;     
-                                        if (Math.abs(delX) > 5) isClickAllowed = false;                 
-                                        if ((delX > 0 && slideNow === 1) || (delX < 0 && slideNow === numSlide)) {
-                                            delX = delX / 5; 
-                                        }
-                                        $(selector).find('.product_item > .slideBox > ul').css({'transition' : 'none', 'left' : (offsetX + delX) + 'px'});
-                                        console.log('move~~');
-                                    });
-                                    $(document).on('mouseup', function() {           
-                                        $(document).off('mousemove mouseup');                             
-                                        if ( (delX > 50) && (slideNow !== 1) ) {
-                                            showSlide(slidePrev);
-                                            $(selector).find('.product_item p.next').css({'visibility': 'visible'});
-                                            $(selector).find('.product_item p.prev').css({'visibility': 'hidden'});
-                                        } else if ( (delX < -50) && (slideNow !== numSlide) ) {
-                                            showSlide(slideNext);
-                                            $(selector).find('.product_item > .slideBox > ul > li:eq(' + (slideStandard - 1) + ') a').css({'margin-right': '40px'});
-                                            $(selector).find('.product_item > p.prev').css({'visibility': 'visible'});
-                                            $(selector).find('.product_item > p.next').css({'visibility': 'hidden'});
-                                        } else {
-                                            showSlide(slideNow);
-                                        }                                           
-                                    });
+                        // 상품 판매 및 인기 리스트 배경 이미지 셋팅
+                        if (setContainer === 'product') {
+                            var numTarget = $selector.parent().attr('class');
+                            var arraryClass = numTarget.split(' ');
+                            for (var i=0 ; i < numSlide ; i++) {
+                                $selector.find('.productImg:eq(' + i + ')').find('img').attr('src', 'img/' + arraryClass[0] + '_img' + (i + 1) + '.jpg')
                             }
-                    }).on('click', function(e) {        
-                            if (isClickAllowed === false) {          
+                        } else {                            
+                            for (var i=0 ; i < numSlide ; i++) {
+                                $selector.find('.slideBox > ul > li:eq(' + i + ') > a').css({'background-image' : 'url("img/search_img' + (i + 1) + '.jpg")'});
+                            }
+                        }
+
+                        // 좌우 버튼 초기 셋팅                     
+                        console.log('slidePage : ' + slidePage);
+                        if (slidePage < 2 ) {
+                            $selector.find('.itemcontrol').css({'transition':'none', 'visibility':'hidden'});
+                        } else {
+                            $selector.find('p.next').css({'transition':'none', 'visibility':'visible'});
+                        } 
+                        
+                        ///////////////////////////////////////////////////////////////////////////////////////////
+                        /////// 슬라이드 쇼쇼쇼 ///////
+                        showSlide(slideFirst);
+
+                        // 좌우 버튼 기능
+                        $selector.find('p.next').on('click', function(e) {
                                 e.preventDefault();
-                                isClickAllowed = true;        
-                            }    
+                                showSlide(slideNext);
+                                $selector.find('.slideBox > ul > li:eq(' + (imgStandard - 1) + ') a').css({'margin-right': '40px'});
+                                $selector.find('p.prev').css({'visibility': 'visible'});
+                                $selector.find('p.next').css({'visibility': 'hidden'});
+                        });
+
+                        $selector.find('p.prev').on('click', function(e) {
+                                e.preventDefault();
+                                showSlide(slidePrev);
+                                $selector.find('p.next').css({'visibility': 'visible'});
+                                $selector.find('p.prev').css({'visibility': 'hidden'});
+                        }); 
+                        
+                        // 스와이프 기능
+                        $selector.find('.slideBox > ul').on('mousedown', function(e) {
+                                if (numSlide > imgStandard) {
+                                        e.preventDefault();
+                                        $(this).css({'transition': 'none'}); 
+                                        startX = e.clientX;
+                                        offsetX = $(this).position().left;
+                                        console.log(startX + ' / ' + offsetX);
+                                        $(document).on('mousemove', function(e) {
+                                            delX = e.clientX - startX;     
+                                            if (Math.abs(delX) > 5) isClickAllowed = false;                 
+                                            if ((delX > 0 && slideNow === 1) || (delX < 0 && slideNow === numPage)) {
+                                                
+                                                delX = delX / 5; 
+                                            }
+                                            $selector.find('.slideBox > ul').css({'transition' : 'none', 'left' : (offsetX + delX) + 'px'});
+                                            console.log(delX + ' / ' + numPage + ' / move~~');
+                                        });
+                                        $(document).on('mouseup', function() {           
+                                            $(document).off('mousemove mouseup');                             
+                                            if ( (delX > 50) && (slideNow !== 1) ) {
+                                                showSlide(slidePrev);
+                                                $selector.find('p.next').css({'visibility': 'visible'});
+                                                $selector.find('p.prev').css({'visibility': 'hidden'});
+                                            } else if ( (delX < -50) && (slideNow !== numPage) ) {
+                                                showSlide(slideNext);
+                                                $selector.find('.slideBox > ul > li:eq(' + (imgStandard - 1) + ') a').css({'margin-right': '40px'});
+                                                $selector.find('p.prev').css({'visibility': 'visible'});
+                                                $selector.find('p.next').css({'visibility': 'hidden'});
+                                            } else {
+                                                showSlide(slideNow);
+                                            }                                           
+                                        });
+                                }
+                        }).on('click', function(e) {        
+                                if (isClickAllowed === false) {          
+                                    e.preventDefault();
+                                    isClickAllowed = true;        
+                                }    
+                        });
+
+                        // 슬라이드
+                        function showSlide(n) { 
+                            $selector.find('.slideBox > ul').css({'transition':'.3s', 'left': ((-(n - 1)) * 100) + '%'});
+                            slideNow = n;
+                            slidePrev = (n - 1) < 1 ? 1 : (n - 1);
+                            slideNext = (n + 1) > numPage ? numPage : (n + 1);
+                            console.log('상품 슬라이드 : ' + slidePrev + ' / ' + slideNow + ' / ' + slideNext);                
+
+                        }
                     });
-
-                    function showSlide(n) { 
-                        $(selector).find('.product_item > .slideBox > ul').css({'transition':'.3s', 'left': ((-(n - 1)) * 100) + '%'});
-                        slideNow = n;
-                        slidePrev = (n - 1) < 1 ? 1 : (n - 1);
-                        slideNext = (n + 1) > numSlide ? numSlide : (n + 1);
-                        console.log('상품 슬라이드 : ' + slidePrev + ' / ' + slideNow + ' / ' + slideNext);                
-
-                    }
-                
-                }
             }
+           
+
+            $('.searchContainer > .container > .popular_item').setImageSlide({
+                imgStandard: 6,
+                setContainer: 'popular'
+            });
+            $('.productHistory > .product_item').setImageSlide({imgStandard: 4});
+            $('.productMain1 > .product_item').setImageSlide({imgStandard: 4});
+            $('.productMain2 > .product_item').setImageSlide({imgStandard: 4});
+            $('.productMain3 > .product_item').setImageSlide({imgStandard: 4});
+
 
             // 푸터 언어 박스 
             var langCheck = false;

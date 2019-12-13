@@ -253,7 +253,8 @@ header a {
     border-radius: 2px;
     background-color: #fff;
     box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 5px 10px 0 rgba(0,0,0,.12);
-    transition: transform .12s ease,opacity .12s ease;
+    transform-origin: left top;
+    transition: transform .12s ease, opacity .12s ease;
     z-index: 100;
     display: none;    
     position: absolute;
@@ -826,11 +827,20 @@ header a {
     d: path('M6 9.121L2.292 11 3 7.02 0 4.202l4.146-.581L6 0l1.854 3.621 4.146.58-3 2.82L9.708 11z');
 }
 
-.product_item .productTxt > p:nth-child(3) > span.star > svg:last-child > path {
+.product_item .productTxt > p:nth-child(3) > span.star > svg.star4 path:first-child {
     fill: #DEE2E6;
     fill-rule : evenodd;
     d: path('M6 9.121L2.292 11 3 7.02 0 4.202l4.146-.581L6 0l1.854 3.621 4.146.58-3 2.82L9.708 11z');
 }
+
+
+.product_item .productTxt > p:nth-child(3) > span.star > svg.star4 > g > path.starHalf {
+    fill: #51abf3;
+    fill-rule : evenodd;
+    d: path('M6 .151v9.01l-.077-.04L2.263 11l.699-3.98L0 4.202l4.093-.581L5.923 0 6 .151z');
+}
+
+
 
 .product_item .productTxt > p:nth-child(3) > span.star > span {
     color: #848c94;

@@ -1,0 +1,295 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', 'Nanum Gothic', sans-serif;
+    box-sizing: border-box;
+    color: #555;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #555;
+}
+
+.scroll-page {
+    width: 100vw;
+    height: 100vh;
+    border: 1px solid;
+}
+
+.content:not(:nth-child(1)) {
+    margin-top: 80px;
+}
+
+.scroll-page > h2 {
+    text-align: center;
+    font-size: 24px;
+    margin: 50px 0;
+}
+
+/**************************************/
+
+#header {
+    position: fixed;
+    top: 50%;
+    right: 50px;
+    transform: translateY(-50%);
+    z-index: 1000;
+    background-color: yellowgreen;
+}
+
+.gnbIndicator > li > a {
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    padding: 0 10px;
+    text-align: right;
+    color: #fff;
+}
+
+.gnbIndicator > li > a > span::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -15px;
+    background-color: #fff;
+    border-radius: 100%;
+}
+
+.gnbIndicator > li.on > a {
+    color: red;
+}
+
+.gnbIndicator > li.on > a > span::after {
+    background-color: red;
+}
+
+
+.gnbIndicator li + li {
+    margin-top: 10px;
+}
+
+.content {
+    border: 1px solid red;
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+/**************************************/
+
+#page1 {
+    background-image: url('../img/homeImg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;   
+    color: white;        
+}
+
+#page1::before {
+    content: '';
+    position: absolute;
+    background: #000;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    opacity: 0.7;
+}
+
+#page1 .content {
+    position: relative;  
+    z-index: 1;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+#page1 .content .mainTxt {
+    font-size: 18px;    
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+}
+
+#page1 .content .mainTxt span {
+    color: #fff;
+    display: block;
+}
+
+#page1 .content .scrollDown {
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: shake 1s ease-in-out 2.2s infinite; 
+}
+
+@keyframes shake {
+    0%, 100% {bottom: 70px;}
+    50% {bottom: 50px;}
+} 
+
+/**************************************/
+
+#page2 .content {
+    display: flex;
+    justify-content: flex-start;
+}
+
+#page2 .content .aboutImg {
+    margin: 10px;    
+    position: relative;
+}
+
+#page2 .content .aboutImg img::before {
+    content: '';
+    width: 500px;
+    height: 500px;
+    background-color: gray;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+#page2 .content .aboutTxt {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 80px;
+    margin-right: 10px;
+    line-height: 1.5;
+}
+
+#page2 .content .aboutTxt span + span {
+    margin-top: 30px;
+}
+
+#page2 .content .aboutTxt span:first-child {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+#page2 .content .aboutTxt span:last-child{
+    width: 200px;
+    height: 50px;
+    background: #1957f3;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: 40px;
+    transition: all .3s;
+}
+
+#page2 .content .aboutTxt span:last-child:hover {
+    background: skyblue;
+    color: #111;
+}
+
+/**************************************/
+
+#page3 {
+  background-color: #F7F7F7;
+}
+
+#page3 .content {
+    display: flex;
+    justify-content: flex-start;
+    border: 1px solid #F7F7F7;
+    background-color: #fff;
+    box-shadow: 5px 3px 6px 0 rgba(0,0,0,.3), 1px 0 5px 0 rgba(0,0,0,.3);
+    border-radius: 5px;
+    line-height: 2;
+}
+
+#page3 .content .career,
+#page3 .content .skills {
+    flex : 1;
+    margin: 30px 50px 40px 50px;
+    border: 1px solid red;
+}
+
+#page3 .content h3 {
+    text-align: center;    
+    margin-bottom: 30px;
+    font-size: 18px;
+}
+
+#page3 .content h4 {    
+    font-size: 15px;
+}
+
+#page3 .content P {
+    font-size: 15px;
+}
+
+#page3 .content .careerItem + .careerItem,
+#page3 .content .skillsItem + .skillsItem {
+    margin-top: 15px;
+}
+
+/**************************************/
+
+#page4 {
+    position: relative;
+}
+
+.protfolioWrap {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    border: 2px solid blue;
+}
+
+.protfolioWrap ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid greenyellow;
+}
+
+.protfolioWrap ul li {
+    width: 100%;
+    height: 100%;
+    display: flex;    
+    justify-content: space-between;
+    position: relative;
+}
+
+.protfolioWrap ul li .protfolioImg {    
+    flex: 40%;
+    display: flex;    
+    vertical-align: middle;
+    text-align: center;
+    border: 1px solid blue;
+    padding: 20px 0;
+    
+}
+
+.protfolioWrap ul li .protfolioInfo {
+    flex: 50%;
+    
+    text-align: center;
+    border: 1px solid blue;
+    
+}
+
+.protfolioWrap ul li .protfolioImg img {
+    height: 100%;
+}

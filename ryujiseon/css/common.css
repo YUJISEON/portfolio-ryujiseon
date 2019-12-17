@@ -19,7 +19,11 @@ a {
 .scroll-page {
     width: 100vw;
     height: 100vh;
-    border: 1px solid;
+}
+
+.content {
+    max-width: 1240px;
+    margin: 0 auto;
 }
 
 .content:not(:nth-child(1)) {
@@ -28,8 +32,8 @@ a {
 
 .scroll-page > h2 {
     text-align: center;
-    font-size: 24px;
-    margin: 50px 0;
+    font-size: 28px;
+    margin: 100px 0 50px 0;
 }
 
 /**************************************/
@@ -77,11 +81,6 @@ a {
     margin-top: 10px;
 }
 
-.content {
-    border: 1px solid red;
-    max-width: 1240px;
-    margin: 0 auto;
-}
 
 /**************************************/
 
@@ -204,6 +203,7 @@ a {
 
 #page3 {
   background-color: #F7F7F7;
+  border: 1px solid;
 }
 
 #page3 .content {
@@ -248,48 +248,165 @@ a {
     position: relative;
 }
 
+#page4 .content {
+    padding: 0 50px;
+    position: relative;
+}
+
+
 .protfolioWrap {
     position: relative;
     width: 100%;
-    height: 60vh;
-    border: 2px solid blue;
+    height: 600px;
+    border: 2px solid pink;
+    overflow: hidden;
 }
 
-.protfolioWrap ul {
+.protfolioWrap > ul.protfolioSlide {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    border: 2px solid greenyellow;
+    /*border: 2px solid blue;*/
 }
 
-.protfolioWrap ul li {
+.protfolioWrap ul.protfolioSlide > li {
     width: 100%;
     height: 100%;
     display: flex;    
     justify-content: space-between;
     position: relative;
+    position: absolute;
+    top: 0;
 }
 
-.protfolioWrap ul li .protfolioImg {    
-    flex: 40%;
-    display: flex;    
-    vertical-align: middle;
-    text-align: center;
-    border: 1px solid blue;
-    padding: 20px 0;
-    
-}
+.protfolioWrap ul.protfolioSlide > li:nth-child(1) { left: 0; }
+.protfolioWrap ul.protfolioSlide > li:nth-child(2) { left: 100% ; }
+.protfolioWrap ul.protfolioSlide > li:nth-child(3) { left: 200% ; }
 
-.protfolioWrap ul li .protfolioInfo {
+.protfolioWrap ul.protfolioSlide li .protfolioImg {    
     flex: 50%;
-    
     text-align: center;
-    border: 1px solid blue;
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 10%;
 }
 
-.protfolioWrap ul li .protfolioImg img {
-    height: 100%;
+.protfolioWrap ul.protfolioSlide li .protfolioImg img {    
+    height: 40vh;
+    vertical-align: middle;
+}
+
+.protfolioWrap ul.protfolioSlide li .protfolioInfo {
+    flex: 40%;   
+    text-align: left;
+    padding: 20px 0;
+    line-height: 2;
+}
+
+.protfolioWrap ul.protfolioSlide li .protfolioInfo .infoTit {
+    margin: 50px 0;
+    font-size: 22px;
+    font-weight: normal;
+}
+
+.protfolioWrap ul.protfolioSlide li .protfolioInfo .infoTxt li strong {
+    width: 35%;
+    display: inline-block;
+}
+
+.protfolioWrap ul.protfolioSlide li .protfolioInfo .infoTxt i {
+    color: #1957f3;
+}
+
+.protfolioWrap ul.protfolioSlide li .protfolioInfo .infoPoint {
+    margin: 30px 0;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.protfolioWrap ul.protfolioSlide li .protfolioInfo .infoPoint span {
+    font-weight: bold;
+}
+
+.protfolioWrap ul.protfolioSlide li .protfolioInfo .infoLink {
+    display: flex;
+    justify-content: center;
+}
+
+.protfolioWrap ul.protfolioSlide li .protfolioInfo .infoLink p + p {
+    display : inline-block;
+    margin-left: 10px;
+}
+
+.protfolioWrap ul.protfolioSlide li .protfolioInfo .infoLink a {
+    display : inline-block;
+    width: 200px;
+    height: 50px;
+    background: #1957f3;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    font-weight: 500;
+    border-radius: 10px;   
+    transition: all .3s;
+}
+
+.protfolioWrap ul.protfolioSlide li .protfolioInfo .infoLink a:hover {
+    background: skyblue;
+    color: #111;
+}
+
+.protfolioWrap ul.protfolioIndicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;    
+    width: 100%;
+    text-align: center;
+}
+
+.protfolioWrap ul.protfolioIndicator li {
+    display: inline-block;
+}
+
+.protfolioWrap ul.protfolioIndicator li + li {
+    margin-left: 10px;    
+}
+
+.protfolioWrap ul.protfolioIndicator a {
+    width: 15px;
+    height: 15px;
+    display: block;
+    border-radius: 20px;
+    background-color: skyblue;
+    overflow: hidden;
+    text-indent: -9999px;
+}
+
+.protfolioWrap ul.protfolioIndicator li.on a {
+    animation: checked 1.5s ease;
+    animation-fill-mode: forwards;
+}
+
+@keyframes checked {
+    100% { width: 50px; background: #1957f3; }
+} 
+
+p.control a {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 70px;
+}
+
+p.control a.prev { left: 0px; }
+p.control a.next { right: 0px; }
+
+/**************************************/
+
+#footer {
+    text-align: right;
+    margin-bottom: 20px;
 }

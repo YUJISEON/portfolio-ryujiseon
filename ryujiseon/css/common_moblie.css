@@ -1,0 +1,78 @@
+
+* { font-size: 13px; }
+.content {width: 100vw; padding: 0 5vw;}
+.scroll-page:not(:first-child) { height: auto; padding-bottom: 50px; }
+.scroll-page > h2 { margin: 100px 0 30px 0; }
+
+/**************************************/
+
+#header { top: 0; left: 0; right: 0; transform: none; width: 100vw; height: 50px; background-color: rgba(0, 0, 0, 1); }
+.menuBtn {display: block; position: absolute; top: 50%; right: 20px; transform: translateY(-50%); }
+.menuBtn i { color: #fff; font-size: 25px; cursor: pointer; }
+.gnbIndicator { display: none; position: absolute;  top: 50px; left: 0; padding: 10px 10px; width: 100%; z-index: 100000; background-color: rgba(0, 0, 0, 1); }
+.gnbIndicator.on { display: block; }
+.gnbIndicator > li > a {text-align: center;  padding : 10px 10px;}
+.gnbIndicator > li > a > span::after { content: none; }
+
+
+/**************************************/
+
+#page2 .content .aboutImg img { width: 30vw; }
+#page2 .content .aboutTxt { margin-left: 5vw; }
+#page2 .content .aboutTxt span + span { margin-top: 3vh; }
+#page2 .content .aboutTxt span:first-child { font-size: 15px; }
+#page2 .content .aboutTxt span:last-child{ width: 25vw; height: 40px; line-height: 40px;}
+
+/**************************************/
+  
+#page3 .content { width: 90vw; }
+#page3 .content .career,
+#page3 .content .skills {width: 70vw; margin: 30px 10px 40px 10px; }
+#page3 .content h3 { margin-bottom: 15px; }
+#page3 .content h4,
+#page3 .content P { font-size: 10px; }
+#page3 .content .careerItem + .careerItem,
+#page3 .content .skillsItem + .skillsItem { margin-top: 10px; }
+  
+/**************************************/
+
+.protfolioWrap {overflow: visible;} 
+
+.protfolioWrap > ul.protfolioSlide { display: block;}
+.protfolioWrap ul.protfolioSlide > li {  position: static; display: flex; flex-direction: column; justify-content: space-between; align-items: center; margin-top: 50px; margin-bottom: 30px; }
+.protfolioWrap ul.protfolioSlide > li .protfolioImg { margin-right: 0;}
+.protfolioWrap ul.protfolioSlide > li .protfolioImg img { height: 30vh;}
+.protfolioWrap ul.protfolioSlide > li .protfolioInfo { width: 80%; /*line-height: 2*/ font-size: 16px;}
+.protfolioWrap ul.protfolioSlide > li .protfolioInfo .infoTit { margin: 10px 0; font-size: 22px;}
+.protfolioWrap ul.protfolioSlide > li .protfolioInfo .infoPoint { margin: 15px 0; font-size: 18px;}
+.protfolioWrap ul.protfolioSlide > li .protfolioInfo .infoLink a { width: 25vw; height: 40px; line-height: 40px;}
+
+.protfolioWrap ul.protfolioIndicator {display: none;}
+p.control a { display: none; }
+
+
+/**************************************/
+
+#footer { margin-bottom: 10px; }
+
+/**************************************/
+
+
+@media screen and (max-width : 680px) {
+
+    * { transition: .2s;}
+
+    #page2 .content .aboutTxt span { font-size: 12px; }
+
+    #page3 .content { flex-direction: column; }
+    #page3 .content::after { content: none; }
+    #page3 .content .career,
+    #page3 .content .skills {width: 90%; margin: 20px 20px 20px 20px; }
+    #page3 .content h3 { margin-bottom: 15px; }
+    #page3 .content h4,
+    #page3 .content P { font-size: 13px; }
+
+    .protfolioWrap ul.protfolioSlide > li .protfolioImg img { height: 25vh;}
+    .protfolioWrap ul.protfolioSlide > li .protfolioInfo { width: 100%; line-height: 1.5;}
+
+}

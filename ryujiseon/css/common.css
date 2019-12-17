@@ -5,6 +5,7 @@
     font-family: 'Roboto', 'Nanum Gothic', sans-serif;
     box-sizing: border-box;
     color: #555;
+    font-size: 16px;  
 }
 
 li {
@@ -26,7 +27,7 @@ a {
     margin: 0 auto;
 }
 
-.content:not(:nth-child(1)) {
+.content:not(:nth-child(1)):not(:last-child) {
     margin-top: 80px;
 }
 
@@ -45,6 +46,10 @@ a {
     transform: translateY(-50%);
     z-index: 1000;
     background-color: yellowgreen;
+}
+
+.menuBtn {
+    display: none;
 }
 
 .gnbIndicator > li > a {
@@ -203,10 +208,11 @@ a {
 
 #page3 {
   background-color: #F7F7F7;
-  border: 1px solid;
+  border: 1px solid rgba(0,0,0,.0);
 }
 
 #page3 .content {
+    position: relative;
     display: flex;
     justify-content: flex-start;
     border: 1px solid #F7F7F7;
@@ -216,11 +222,21 @@ a {
     line-height: 2;
 }
 
+#page3 .content::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    width: 1px;
+    height: 80%;
+    background: #f0f0f0;
+}
+
 #page3 .content .career,
 #page3 .content .skills {
     flex : 1;
     margin: 30px 50px 40px 50px;
-    border: 1px solid red;
 }
 
 #page3 .content h3 {
@@ -253,12 +269,11 @@ a {
     position: relative;
 }
 
-
 .protfolioWrap {
     position: relative;
     width: 100%;
     height: 600px;
-    border: 2px solid pink;
+    /*border: 2px solid pink;*/
     overflow: hidden;
 }
 
@@ -276,7 +291,6 @@ a {
     height: 100%;
     display: flex;    
     justify-content: space-between;
-    position: relative;
     position: absolute;
     top: 0;
 }

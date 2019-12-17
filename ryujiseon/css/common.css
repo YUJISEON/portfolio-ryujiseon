@@ -39,48 +39,62 @@ a {
 
 /**************************************/
 
+#cursor { position: fixed; left: 0; top: 0; width: 60px; height: 60px; background-color: pink; z-index: 10000; overflow: hidden; transform: translate(-50%, -50%); border-radius: 100%; transition: width .3s, height .3s; background-color: #fff; opacity: .8;}
+#cursor::after { content: ''; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 4px; height: 4px; border-radius: 100%; background-color: red;}
+#cursor img {position: absolute; left: 0; top: 0; width: 100vw; opacity: 0; transition: opacity .3s; }
+#cursor.on { width: 300px; height: 300px; opacity: .3;}
+
+#cursor.on img { opacity: 1; }
+
+
+/**************************************/
+
 #header {
     position: fixed;
     top: 50%;
-    right: 50px;
+    right: 70px;
     transform: translateY(-50%);
     z-index: 1000;
-    background-color: yellowgreen;
+    background-color: rgba(0,0,0,.3);
 }
 
 .menuBtn {
     display: none;
 }
 
+.gnbIndicator  {
+    margin: 5px 0;
+}
+
 .gnbIndicator > li > a {
     width: 100%;
     display: inline-block;
     position: relative;
-    padding: 0 10px;
+    padding: 0 20px;
     text-align: right;
     color: #fff;
 }
 
-.gnbIndicator > li > a > span::after {
-    content: '';
+.gnbIndicator > li > a > span {    
     width: 10px;
     height: 10px;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    right: -15px;
+    right: 0px;
     background-color: #fff;
     border-radius: 100%;
+    margin-right: 5px;
 }
+
 
 .gnbIndicator > li.on > a {
     color: red;
 }
 
-.gnbIndicator > li.on > a > span::after {
+.gnbIndicator > li.on > a > span {
     background-color: red;
 }
-
 
 .gnbIndicator li + li {
     margin-top: 10px;
@@ -96,6 +110,7 @@ a {
     background-size: cover;
     position: relative;   
     color: white;        
+    overflow: hidden;
 }
 
 #page1::before {

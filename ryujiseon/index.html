@@ -10,11 +10,8 @@
     <link rel="stylesheet" href="css/common_moblie.css" media="screen and (max-width : 1023px)">
     <script src="js/jquery-3.3.1.min.js"></script>
     <title>류지선 포트폴리오</title>
-    <script>
-        alert('하이2');
-    </script>
 </head>
-<body>
+<body>    
     <header id="header">
         <nav id="gnb">
             <div class="menuBtn">
@@ -22,7 +19,7 @@
             </div>
             <ul class="gnbIndicator"> 
                 <li class="on"><a href="#">Home<span></span></a></li>
-                <li><a href="#">About Me<span></span></a></li>
+                <li class=""><a href="#">About Me<span></span></a></li>
                 <li><a href="#">Technical<span></span></a></li>
                 <li><a href="#">Portfolio<span></span></a></li>
             </ul>
@@ -30,6 +27,7 @@
     </header>
     <main id="main">        
         <section id="page1" class="scroll-page">
+            <!-- <p id="cursor"></p> -->
             <div class="content">
                 <div class="mainTxt">
                     <span>당신이 할 수 있거나 할 수 있다고 꿈꾸는 그 모든 일을 시작하라.</span>
@@ -199,4 +197,111 @@
         <span>© Copyright 2019 RYUJISEON All Rights Reserved</span>
     </footer>
 </body>
+
+<script>
+'use strict';
+
+
+
+$(window).on('mousemove', function(e) {
+    e.preventDefault();
+    var coordX = e.clientX;
+    var coordY = e.clientY;
+    console.log(coordX + ' / ' + coordY);
+    $('#cursor').css({'left' : coordX + 'px', 'top' : coordY + 'px'});
+    $('#cursor img').css({'left' : 'calc(' + (-coordX) + 'px + 50%)', 'top' : 'calc(' + (-coordY) + 'px + 50%)'});
+}).on('mousedown', function() {
+    $('#cursor').addClass('on');
+}).on('mouseup', function(){
+    $('#cursor').removeClass('on');
+});
+
+setParallaxWithBar('.scroll-page');
+
+function setParallaxWithBar(selector) {
+    var numPage = $(selector).length;
+    var pageNow = 0;
+    var pagePrev = 0;
+    var pageNext = 0;
+    var eventScroll = '';
+    var onAnimation = false;
+    var isWheelBlocked = false;
+    var timerId = '';
+
+    //console.log('onmousewheel' in window);
+    eventScroll = ('onmousewheel' in window) ? 'mousewheel' : 'DOMMouseScroll';
+    //$(selector).each(function(i) {
+    //    $('#page-indicator').append('<li><a href="#">' + (i + 1) + '번 페이지 보기</a></li>');
+    //});
+    checkScroll();
+
+    // 이벤트
+    $('#page-indicator li a').on('click', function() {
+        var index = $('#page-indicator li').index($(this).parent());
+        showPage(index + 1);
+    });
+
+    // 마우스 휠 이벤트
+    window.addEventListener(eventScroll, function(e) {
+        e.preventDefault();
+        clearTimeout(timerId);
+        timerId = setTimeout(function() {isWheelBlocked = false;}, 200);
+        if (onAnimation === true || isWheelBlocked === true) return false;
+        isWheelBlocked = true;
+
+        var delta = 0;
+        if (eventScroll === 'mousewheel') {
+            delta = e.wheelDelta / -120;
+        } else {
+            delta = e.detail / 3;
+        }
+        //console.log(delta);
+        if (delta > 0) {
+            showPage(pageNext);
+        } else {
+            showPage(pagePrev);
+        }
+    }, {passive: false});
+
+    $(window).on('scroll resize', function() {
+        checkScroll();
+    });
+
+    function checkScroll() {
+        var scrollTop = $(document).scrollTop();
+        var minScroll = 0;
+        var maxScroll = 0;
+        $(selector).each(function(i) {
+            minScroll = $(this).offset().top - $(window).height() / 2;
+            maxScroll = $(this).offset().top + $(window).height() / 2;
+            if (i === (numPage - 2)) {
+                maxScroll = $(this).offset().top + 20;
+            }
+            if (i === (numPage - 1)) {
+                minScroll = $(selector + ':eq(' + (numPage - 2) + ')').offset().top + 20;
+            }
+            if (scrollTop > minScroll && scrollTop <= maxScroll) {
+                var n = i + 1;
+                $('.gnbIndicator li').removeClass('on');
+                $('.gnbIndicator li:eq(' + i + ')').addClass('on');
+                pageNow = n;
+                pagePrev = (n - 1) < 1 ? 1 : n - 1;
+                pageNext = (n + 1) > numPage ? numPage : n + 1;
+                return false;
+            }
+        });
+    }
+    
+    function showPage(n) {
+        var scrollTop = $(selector + ':eq(' + (n - 1) + ')').offset().top;
+        onAnimation = true;
+        $('html, body').stop(true).animate({'scrollTop': scrollTop + 'px'}, 500, function() {
+            onAnimation = false;
+        });
+        //console.log(pagePrev + ' / ' + pageNow + ' / ' + pageNext);
+    }
+}
+    
+</script>
+
 </html>

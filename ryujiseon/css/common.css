@@ -20,21 +20,28 @@ a {
 .scroll-page {
     width: 100vw;
     height: 100vh;
+    border: 1px solid rgba(0,0,0,.0); /* **중요 */
 }
+
+.scroll-page:last-child {
+    height: 95vh;
+}
+
 
 .content {
     max-width: 1240px;
     margin: 0 auto;
 }
 
-.content:not(:nth-child(1)):not(:last-child) {
-    margin-top: 80px;
+.content:not(:nth-child(1)) {
+    margin-top: 0px;
 }
+
 
 .scroll-page > h2 {
     text-align: center;
     font-size: 28px;
-    margin: 100px 0 50px 0;
+    margin: 70px 0 50px 0;
 }
 
 /**************************************/
@@ -52,7 +59,7 @@ a {
 #header {
     position: fixed;
     top: 50%;
-    right: 70px;
+    right: 0px;
     transform: translateY(-50%);
     z-index: 1000;
     background-color: rgba(0,0,0,.3);
@@ -223,7 +230,6 @@ a {
 
 #page3 {
   background-color: #F7F7F7;
-  border: 1px solid rgba(0,0,0,.0);
 }
 
 #page3 .content {
@@ -287,8 +293,7 @@ a {
 .protfolioWrap {
     position: relative;
     width: 100%;
-    height: 600px;
-    /*border: 2px solid pink;*/
+    height: 70vh;
     overflow: hidden;
 }
 
@@ -435,7 +440,9 @@ p.control a.next { right: 0px; }
 
 /**************************************/
 
-#footer {
+#footer {    
+    height: 5vh;
     text-align: right;
-    margin-bottom: 20px;
+    margin-top: 0px;
+    /*margin-bottom: 20px;*/
 }

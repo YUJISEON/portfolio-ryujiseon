@@ -36,16 +36,16 @@
   
 /**************************************/
 
-.protfolioWrap {overflow: visible;} 
+.protfolioWrap { height: auto;  overflow: visible;} 
+.protfolioWrap > ul.protfolioSlide { position: static; height: auto; }
 
-.protfolioWrap > ul.protfolioSlide { display: block;}
-.protfolioWrap ul.protfolioSlide > li {  position: static; display: flex; flex-direction: column; justify-content: space-between; align-items: center; margin-top: 50px; margin-bottom: 30px; }
-.protfolioWrap ul.protfolioSlide > li .protfolioImg { margin-right: 0;}
-.protfolioWrap ul.protfolioSlide > li .protfolioImg img { height: 30vh;}
-.protfolioWrap ul.protfolioSlide > li .protfolioInfo { width: 80%; /*line-height: 2*/ font-size: 16px;}
-.protfolioWrap ul.protfolioSlide > li .protfolioInfo .infoTit { margin: 10px 0; font-size: 22px;}
-.protfolioWrap ul.protfolioSlide > li .protfolioInfo .infoPoint { margin: 15px 0; font-size: 18px;}
-.protfolioWrap ul.protfolioSlide > li .protfolioInfo .infoLink a { width: 25vw; height: 40px; line-height: 40px;}
+.protfolioWrap > ul.protfolioSlide > li {  position: static; display: flex; flex-direction: column; justify-content: space-between; align-items: center; margin-top: 50px; margin-bottom: 30px; }
+.protfolioWrap > ul.protfolioSlide > li .protfolioImg { margin-right: 0;}
+.protfolioWrap > ul.protfolioSlide > li .protfolioImg img { height: 30vh;}
+.protfolioWrap > ul.protfolioSlide > li .protfolioInfo { width: 80%; /*line-height: 2*/ font-size: 16px;}
+.protfolioWrap > ul.protfolioSlide > li .protfolioInfo .infoTit { margin: 10px 0; font-size: 22px;}
+.protfolioWrap > ul.protfolioSlide > li .protfolioInfo .infoPoint { margin: 15px 0; font-size: 18px;}
+.protfolioWrap > ul.protfolioSlide > li .protfolioInfo .infoLink a { width: 25vw; height: 40px; line-height: 40px;}
 
 .protfolioWrap ul.protfolioIndicator {display: none;}
 p.control a { display: none; }

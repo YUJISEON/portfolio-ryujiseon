@@ -14,7 +14,7 @@
 <body>    
     <header id="header">
         <nav id="gnb">
-            <div class="menuBtn">
+            <div class="menuBtn mpblieBtn">
                 <i class="fa fa-bars" aria-hidden="true"></i>
             </div>
             <ul class="gnbIndicator"> 
@@ -194,7 +194,7 @@
         </section>
     </main>
     <footer id="footer" class="content">
-        <span>© Copyright 2019 RYUJISEON All Rights Reserved</span>
+        © Copyright 2019 RYUJISEON All Rights Reserved
     </footer>
 </body>
 
@@ -219,25 +219,26 @@ $(window).on('mousemove', function(e) {
 setParallaxWithBar('.scroll-page');
 
 function setParallaxWithBar(selector) {
-    var numPage = $(selector).length;
+    var numPage = $(selector).length;  // 페이지 갯수
     var pageNow = 0;
     var pagePrev = 0;
     var pageNext = 0;
-    var eventScroll = '';
-    var onAnimation = false;
+    var eventScroll = ''; // onmousewheel 객체 여부 담을 변수
+    var onAnimation = false; // 휠 다다닥.. 막기
     var isWheelBlocked = false;
     var timerId = '';
 
-    //console.log('onmousewheel' in window);
     eventScroll = ('onmousewheel' in window) ? 'mousewheel' : 'DOMMouseScroll';
+    // 참 mousewheel (크롬, IE) 거짓 DOMMouseScroll (파이어폭스)
+    console.log('eventScroll : ' + eventScroll);
     //$(selector).each(function(i) {
     //    $('#page-indicator').append('<li><a href="#">' + (i + 1) + '번 페이지 보기</a></li>');
     //});
     checkScroll();
 
     // 이벤트
-    $('#page-indicator li a').on('click', function() {
-        var index = $('#page-indicator li').index($(this).parent());
+    $('.gnbIndicator li a').on('click', function() {
+        var index = $('.gnbIndicator li').index($(this).parent());
         showPage(index + 1);
     });
 
@@ -269,17 +270,20 @@ function setParallaxWithBar(selector) {
 
     function checkScroll() {
         var scrollTop = $(document).scrollTop();
-        var minScroll = 0;
-        var maxScroll = 0;
+        console.log('$(window).height() : ' + $(window).height());
+        console.log('scrollTop : ' + scrollTop);
+        var minScroll = 0; // 각 페이지의 최소값
+        var maxScroll = 0; // 각 페이지의 최대값
         $(selector).each(function(i) {
-            minScroll = $(this).offset().top - $(window).height() / 2;
-            maxScroll = $(this).offset().top + $(window).height() / 2;
-            if (i === (numPage - 2)) {
+            console.log('offset : ' + i + ' / ' + $(this).offset().top);
+            minScroll = $(this).offset().top - ($(window).height() / 2);
+            maxScroll = $(this).offset().top + ($(window).height() / 2);
+            /*if (i === (numPage - 2)) {
                 maxScroll = $(this).offset().top + 20;
             }
             if (i === (numPage - 1)) {
                 minScroll = $(selector + ':eq(' + (numPage - 2) + ')').offset().top + 20;
-            }
+            }*/
             if (scrollTop > minScroll && scrollTop <= maxScroll) {
                 var n = i + 1;
                 $('.gnbIndicator li').removeClass('on');
@@ -287,7 +291,7 @@ function setParallaxWithBar(selector) {
                 pageNow = n;
                 pagePrev = (n - 1) < 1 ? 1 : n - 1;
                 pageNext = (n + 1) > numPage ? numPage : n + 1;
-                return false;
+                //return false;
             }
         });
     }

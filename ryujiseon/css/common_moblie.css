@@ -9,10 +9,10 @@
 #header { top: 0; left: 0; right: 0; transform: none; width: 100vw; height: 50px; background-color: rgba(0, 0, 0, 1); }
 .menuBtn {display: block; position: absolute; top: 50%; right: 20px; transform: translateY(-50%); }
 .menuBtn i { color: #fff; font-size: 25px; cursor: pointer; }
-.gnbIndicator { display: none; position: absolute;  top: 50px; left: 0; padding: 10px 10px; width: 100%; z-index: 100000; background-color: rgba(0, 0, 0, 1); }
+.gnbIndicator { display : none; position: absolute;  top: 50px; left: 0; margin: 0; padding: 10px 10px; width: 100%; z-index: 100000; background-color: rgba(0, 0, 0, 1); }
 .gnbIndicator.on { display: block; }
 .gnbIndicator > li > a {text-align: center;  padding : 10px 10px;}
-.gnbIndicator > li > a > span::after { content: none; }
+.gnbIndicator > li > a > span { display: none; }
 
 
 /**************************************/

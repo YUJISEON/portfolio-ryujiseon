@@ -127,7 +127,7 @@
                                         <p><i class="fa fa-check"></i> <span>좌표값</span>을 활용하는 UI 개발 기법</p>
                                     </div>
                                     <div class="infoLink">
-                                        <p><a href="#">Go Site</a></p>
+                                        <p><a href="http://ryujiseon25.dothome.co.kr/ryujiseon">Go Site</a></p>
                                         <p><a href="#">View Code</a></p>
                                     </div>
                                 </ul>                                
@@ -150,7 +150,7 @@
                                         <p><i class="fa fa-check"></i> <span>좌표값</span>을 활용하는 UI 개발 기법</p>
                                     </div>
                                     <div class="infoLink">
-                                        <p><a href="#">Go Site</a></p>
+                                        <p><a href="http://ryujiseon25.dothome.co.kr/yourseason">Go Site</a></p>
                                         <p><a href="#">View Code</a></p>
                                     </div>
                                 </ul>      
@@ -173,7 +173,7 @@
                                         <p><i class="fa fa-check"></i> <span>좌표값</span>을 활용하는 UI 개발 기법</p>
                                     </div>
                                     <div class="infoLink">
-                                        <p><a href="#">Go Site</a></p>
+                                        <p><a href="http://ryujiseon25.dothome.co.kr/myrealtrip">Go Site</a></p>
                                         <p><a href="#">View Code</a></p>
                                     </div>
                                 </ul>      
@@ -181,14 +181,14 @@
                         </li>
                     </ul>
                     <ul class="protfolioIndicator"> 
-                        <li class="on"><a href="#">포트폴리오1</a></li>
-                        <li><a href="#">포트폴리오2</a></li>
-                        <li><a href="#">포트폴리오3</a></li>
+                        <li class="on"><a href="#page4">포트폴리오1</a></li>
+                        <li><a href="#page4">포트폴리오2</a></li>
+                        <li><a href="#page4">포트폴리오3</a></li>
                     </ul>                    
                 </div>
                 <p class="control">
-                    <a href="#" class="prev">&langle; </a> <!-- <i class="fa fa-chevron-circle-left icon" aria-hidden="true"></i> -->
-                    <a href="#" class="next">&rangle; </a> <!-- <i class="fa fa-chevron-circle-right icon" aria-hidden="true"></i> -->
+                    <a href="#page4" class="prev">&langle; </a> <!-- <i class="fa fa-chevron-circle-left icon" aria-hidden="true"></i> -->
+                    <a href="#page4" class="next">&rangle; </a> <!-- <i class="fa fa-chevron-circle-right icon" aria-hidden="true"></i> -->
                 </p>                
             </div>
         </section>
@@ -234,21 +234,22 @@ function setParallaxWithBar(selector) {
     //$(selector).each(function(i) {
     //    $('#page-indicator').append('<li><a href="#">' + (i + 1) + '번 페이지 보기</a></li>');
     //});
+    
     checkScroll();
 
     // 이벤트
-    $('.gnbIndicator li a').on('click', function() {
-        var index = $('.gnbIndicator li').index($(this).parent());
+    $('.gnbIndicator > li > a').on('click', function() {
+        var index = $('.gnbIndicator > li').index($(this).parent());
         showPage(index + 1);
     });
 
     // 마우스 휠 이벤트
     window.addEventListener(eventScroll, function(e) {
         e.preventDefault();
-        clearTimeout(timerId);
-        timerId = setTimeout(function() {isWheelBlocked = false;}, 200);
+        //clearTimeout(timerId);
+        //timerId = setTimeout(function() {isWheelBlocked = false;}, 200);
         if (onAnimation === true || isWheelBlocked === true) return false;
-        isWheelBlocked = true;
+        //isWheelBlocked = true;
 
         var delta = 0;
         if (eventScroll === 'mousewheel') {
@@ -286,8 +287,8 @@ function setParallaxWithBar(selector) {
             }*/
             if (scrollTop > minScroll && scrollTop <= maxScroll) {
                 var n = i + 1;
-                $('.gnbIndicator li').removeClass('on');
-                $('.gnbIndicator li:eq(' + i + ')').addClass('on');
+                $('.gnbIndicator > li').removeClass('on');
+                $('.gnbIndicator > li:eq(' + i + ')').addClass('on');
                 pageNow = n;
                 pagePrev = (n - 1) < 1 ? 1 : n - 1;
                 pageNext = (n + 1) > numPage ? numPage : n + 1;
@@ -303,6 +304,54 @@ function setParallaxWithBar(selector) {
             onAnimation = false;
         });
         //console.log(pagePrev + ' / ' + pageNow + ' / ' + pageNext);
+    }
+}
+
+setImageSlide('#page4 .content', 1, false, 2000);
+  
+function setImageSlide(selector, first, status, sepeed) {  
+    var numSlide = $(selector).find('ul.protfolioSlide > li').length;
+    var slideNow = 0;
+    var slidePrev = 0;
+    var slideNext = 0;
+    var slideFirst = first;
+    var timerSpeed = sepeed;
+
+    // 초기화
+    $(selector).find('ul.protfolioSlide > li').each(function(i) {
+        $(this).css({'left': (i * 100) + '%'}); /* , 'display': 'block' */
+        //$(selector).find('ul.indicator').append('<li><a href="#">' + (i + 1) + '번 슬라이드</a></li>\n');
+    });
+
+    showSlide(slideFirst);
+
+    $(selector).find('ul.protfolioIndicator > li > a').on('click', function() {
+        var index = $(selector).find('ul.protfolioIndicator > li').index($(this).parent());
+        showSlide(index + 1);
+    });
+   $(selector).find('p.control > a.prev').on('click', function() {
+        console.log('a.prev 클릭');
+        //$(this).find('img').stop(true).animate({'left': '-10px'}, 50).animate({'left': 0}, 100);
+        showSlide(slidePrev);
+    });
+    $(selector).find('p.control > a.next').on('click', function() {
+        console.log('a.next 클릭');
+        //$(this).find('img').stop(true).animate({'right': '-10px'}, 50).animate({'right': 0}, 100);
+        showSlide(slideNext);
+    });
+    
+    function showSlide(n) {       
+        if (slideNow === 0) {
+            $(selector).find('ul.protfolioSlide').css({'transition': 'none', 'left': -((n - 1) * 100) + '%'});
+        } else {
+            $(selector).find('ul.protfolioSlide').css({'transition': 'left 0.3s', 'left': -((n - 1) * 100) + '%'});
+        }
+        $(selector).find('ul.protfolioIndicator > li').removeClass('on');
+        $(selector).find('ul.protfolioIndicator > li:eq(' + (n - 1) + ')').addClass('on');
+        slideNow = n;
+        slidePrev = (n - 1) < 1 ? numSlide : n - 1;
+        slideNext = (n + 1) > numSlide ? 1 : n + 1;
+        console.log(slidePrev + ' / ' + slideNow + ' / ' + slideNext);
     }
 }
     

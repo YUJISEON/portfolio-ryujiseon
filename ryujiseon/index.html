@@ -354,6 +354,24 @@ function setImageSlide(selector, first, status, sepeed) {
         console.log(slidePrev + ' / ' + slideNow + ' / ' + slideNext);
     }
 }
+
+var moblieCon = false;
+
+$('.mpblieBtn').on('click', function() {
+    if (moblieCon == false) {
+        $('.gnbIndicator').addClass('on');
+        moblieCon = true;
+    } else {
+        $('.gnbIndicator').removeClass('on');
+        moblieCon = false;
+    }
+});
+
+$('.gnbIndicator > li > a').on('click', function() {
+    $('.gnbIndicator').removeClass('on');
+    moblieCon = false;
+});
+
     
 </script>
 

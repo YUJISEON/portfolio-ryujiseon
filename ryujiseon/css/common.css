@@ -120,7 +120,7 @@ a {
     overflow: hidden;
 }
 
-#page1::before {
+#page1::after {
     content: '';
     position: absolute;
     background: #000;

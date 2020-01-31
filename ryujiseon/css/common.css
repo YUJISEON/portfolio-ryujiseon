@@ -448,3 +448,102 @@ p.control > a.next { right: 0px; }
     margin-top: 0px;
     /*margin-bottom: 20px;*/
 }
+
+/**************************************/
+
+#contactPopup {
+    display: none;
+    position: fixed;
+    z-index: 100000;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 15vh 10vw;
+}
+
+#contactPopup.on {
+    display: block;
+}
+
+#contactPopup .close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    font-size: 3em;
+    line-height: 0;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+}
+
+#contactload {
+    width: 80vw;
+    height: 70vh;
+}
+
+.contactContent {
+    position: relative;
+}
+
+.contactContent input[type=text],
+.contactContent input[type=email],
+.contactContent input[type=tel],
+.contactContent textarea {
+    width: 100%;
+    padding: 12px 0px 12px 0px;
+    border: 1px solid black;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    background: transparent;
+}
+
+.contactContent input[type=text],
+.contactContent input[type=email],
+.contactContent input[type=tel],
+.contactContent textarea {
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+.contactForm {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contactContent .formItem {
+    width: 49%;        
+}
+
+#name, #phone { 
+    margin-right: 1%;
+}
+
+.contactContent textarea {
+    height: 200px;
+    resize: none;
+    margin-bottom: 120px;
+}
+
+.contactContent input#submit {     
+    position: absolute;     
+    bottom:0;  
+    left: calc(50% - 125px);   
+    width: 250px;
+    height: 70px;
+    background: #1957f3;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all .3s;
+}
+
+.contactContent input#submit:hover {
+    background: skyblue;    
+    color: #111;
+    /*opacity: 0.7;*/
+}

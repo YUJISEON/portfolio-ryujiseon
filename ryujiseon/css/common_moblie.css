@@ -79,19 +79,22 @@ p.control a { display: none; }
     .protfolioWrap ul.protfolioSlide > li .protfolioImg img { height: 25vh;}
     .protfolioWrap ul.protfolioSlide > li .protfolioInfo { width: 100%; line-height: 1.5;}
     
-    .contactContent .formItem { width: 100%; }
+    #contactPopup { padding: 10vh 5vw; } 
+    #contactload { width: 90vw; height: 80vh; }
+    .contactForm { display: block; } 
+    .contactForm .formItem { width: 100%; }
     .contactContent #name, .contactContent #phone { margin-right: 0%; }
     .contactContent input[type=text],
     .contactContent input[type=email],
     .contactContent input[type=tel],
-    .contactContent textarea {
-        padding: 0.5vh 0px 0.5vh 0px;
-        border: 1px solid white;
-        margin-top: 1vh;
-        margin-bottom: 1vh;
-        background: transparent;
-    }
-    .contactContent textarea { height: 50px; resize: none; margin-bottom: 10vh; }
+    .contactContent textarea { padding: 0.5vh 0px 0.5vh 5px; margin-top: 2vh; margin-bottom: 2vh;height: 5vh; background: transparent; }
+    .contactContent textarea { height: 10vh; resize: none; margin-bottom: 0vh; }
     .contactContent input#submit { width: 25vh; height: 50px; line-height: 50px; border-radius: 10px; left: 50%; transform: translate(-50%);   }
 
+}
+
+
+@media screen and (max-width : 400px) {
+
+    .protfolioWrap ul.protfolioSlide > li .protfolioImg img { width: 95vw;}
 }

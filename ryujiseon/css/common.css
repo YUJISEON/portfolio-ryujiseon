@@ -481,9 +481,6 @@ p.control > a.next { right: 0px; }
 #contactload {
     width: 80vw;
     height: 70vh;
-}
-
-.contactContent {
     position: relative;
 }
 
@@ -513,7 +510,7 @@ p.control > a.next { right: 0px; }
 }
 
 .contactContent .formItem {
-    width: 49%;        
+    width: 49%;     
 }
 
 #name, #phone { 

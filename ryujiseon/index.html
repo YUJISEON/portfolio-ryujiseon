@@ -200,7 +200,34 @@
     </footer>
     <aside id="contactPopup">
         <div class="close">&Cross;</div>
-        <div id="contactload" class="contactContent container font_5"></div>    
+        <div id="contactload" class="contactContent container font_5">
+            <!-- 폼태그 -->
+            <form action="contact_me.php" method="post">
+                <div class="contactForm">
+                    <div class="nameForm formItem">
+                        <label for="name">* Name<small></small></label>
+                        <input type="text" id="name" name="name" placeholder="First Name/Last Name" required>
+                    </div>
+                    <div class="emailForm formItem">
+                        <label for="email">* Email <small></small></label>
+                        <input type="email" id="email" name="email" placeholder="--------@--------" required>
+                    </div>
+                </div>
+                <div class="contactForm">
+                    <div class="phoneForm formItem">
+                        <label for="phone">* Phone Number<small></small></label>
+                        <input type="tel" id="phone" name="phone" placeholder="(00) 000-0000-0000" required> 
+                    </div>
+                    <div class="companyForm formItem">
+                        <label for="company">* Company<small></small></label>
+                        <input type="text" id="company" name="company" placeholder="Company Name" required> 
+                    </div>
+                </div>
+                <label for="message">* Message<small></small></label>
+                <textarea id="message" name="message" placeholder="Please enter other details." required></textarea>
+                <input type="submit" value="Send Message" id="submit" class="font_9">
+            </form> 
+        </div>    
     </aside>
 </body>
 
@@ -211,7 +238,7 @@
 $('.ContactBtn').on('click', function(){
     $('#contactPopup').addClass('on');
 });
-$("#contactload").load("contact.html");
+//$("#contactload").load("contact.html");
 
 $('.close').on('click', function(){
     console.log('클릭');

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>yourseason</title>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Amiri|Open+Sans|Nanum+Gothic|Nanum+Myeongjo" rel="stylesheet">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">  
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/porifolio_sec2.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+    $(function(){
+
+        var videoW=890;
+        console.log('비디오 너비 사이즈 : '+videoW);
+        var videoNum=$('#videoListWrap .videoList').length;
+        console.log('비디오 개수: '+videoNum);
+        var pageNum=$('.videoPlayPage').length;
+        console.log('페이지 개수: '+pageNum);
+        var moveX=0;
+        var count=0;
+
+        //$('.videoPlayPage2').hide();
+
+        // 비디오 갤러리 이미지 
+        for(i=1;i<=videoNum;i++) {
+            $('.videoList'+i).css({
+                "background":"url('images/video"+i+".png')",
+                "background-position": "center",
+                "background-size": "cover"
+            })
+        }
+
+        // 비디오 이전.다음 버튼 클릭 
+        function videoSilde() {
+            console.log('슬라이드');
+            for(i=1;i<=pageNum;i++) {
+                $('.videoPlayPage'+i).css("transform","translateX("+moveX+"px)");
+            }
+        }
+
+        $('.prevBtn').click(function(){
+            console.log('prev 클릭');
+            if ( count > 0) {
+                count--;
+                moveX+=videoW;
+                videoSilde();
+                $('.nextBtn').css("font-weight", "0");
+                $(this).css("font-weight", "700");
+
+
+            }
+        });
+
+        $('.nextBtn').click(function(){
+            console.log('next 클릭');
+            if ( count == 0) {
+                count++;
+                moveX+=(-videoW);
+                videoSilde();
+                $(this).css("font-weight", "700");
+                $('.prevBtn').css("font-weight", "0");
+            }
+        });
+
+        // 비디로 경로 불러오기 및 배열 저장
+        var videoSrcM={};
+        for (i=0;i<videoNum;i++) {
+            videoSrcM[i]= $('#videoListWrap .videoList'+(i+1)).attr('data-src');
+            console.log(videoSrcM[i]);
+        }
+
+        // 팝업창 영상 슬라이드
+        $('.videoList').click(function () {
+            $('aside').fadeIn();
+            var videoSrc=$(this).attr('data-src');
+            $('.slideWrap .playVideo').attr('src',videoSrc).attr('autoplay', true);         
+        }); 
+
+        // 종료 버튼 - 이미지 슬라이드 
+        $('.close').click(function () {
+                $('aside').hide();
+        });
+
+    })  
+    
+    </script>
+    <style>
+
+    
+     
+     @media screen and (max-width: 480px) {
+
+        /*********비디오 상세 페이지************/
+
+        #videoWrap {
+            background: transparent;
+            border: none;
+            width: auto;
+            height: auto;
+            padding: 0;
+            margin: 30px 0 0 0;
+            overflow: visible;
+        }   
+
+        #videoListWrap,
+        #videoListMove {
+            display: none;
+        }
+                
+        #videoListWrap_M {
+            /*border: 1px solid red;*/
+            display: block;
+        }
+
+        #videoListWrap_M .videoList {
+            display: block;
+            width: 100%;
+            height: 70vw;
+            margin: 10px 0 20px 0;
+            position: relative;
+        }
+
+        #videoListWrap_M .videoList7 {
+            margin-bottom: 0;
+        }
+        
+        #videoListWrap_M .videoList::before {
+            content: '재생';
+            background: rgba(0, 0, 0, 0.5);
+            position: absolute;         
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            color: white;
+            text-align: center;
+            line-height: 70vw;
+        }
+
+        /********* 팝업 ************/
+
+        .slideWrap {
+            width: 80vw;
+            height: 75vh;
+            background: rgba(0, 0, 0, 1);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            overflow: hidden;
+        }
+
+        .playVideo {
+            width: 105%;
+            height: auto;
+        }
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="headerWrap" class="bodyWrap">
+            <div id="logo">
+                <a href="index.html">
+                    <p class="BigLogo">YourSeason</p>
+                    <p class="smallLogo">P H O T O G R P H Y</p>
+                </a>
+            </div>
+            <nav id="menu" class="font_0">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li class="topMenu"><a href="porifolio.html">Portfolio</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <nav id="menu_Mb" class="font_0">
+                <ul>
+                    <li><a href="#"><i class="fa fa-bars" aria-hidden="true"></i></a>
+                        <ul class="subMenu_Mb font_1">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="porifolio.html">Portfolio</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="sectionPage">
+        <div id="sectionWrap" class="bodyWrap">
+            <!-- <div id="pageInfo" class="font_5">
+                <div id="pageSrc">
+                    <i class="fa fa-home" aria-hidden="true"></i><span> > <a href="porifolio.html">PORIFOLIO</a>  > WEDDING</span>
+                </div>
+                <div id="pageLanguage">
+                    <span class="lanClass lanEn">EN</span><span> / </span><span class="lanClass lanKr">KR</span>
+                </div>
+            </div> -->
+            <div id="galleyTitle">
+                <p id="galleyTit" class="galleyTitClass font_2-1">VIDEO</p>
+                <div id="galleyTxt" class="galleyTitClass font_4">
+                    <div id="txtEn">
+                        Choosing a photographer for your wedding should first and foremost be based on emotion. It should be because you adore their images. Please take a look at my photographs and then imagine how good you will look in one.
+                    </div>
+                </div>
+            </div>
+            <div id="videoWrap" class="font_4">
+                <div id="videoPlay">
+                        <iframe class="proVid proVid1" width="890" height="500" src="https://www.youtube.com/embed/7OparF5OEkk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div id="videoListWrap">
+                    <div class="videoPlayPage videoPlayPage1 clear">
+                        <div id="videoListId1" class="videoList videoList1" data-src="https://www.youtube.com/embed/7OparF5OEkk"></div>
+                        <div id="videoListId2" class="videoList videoList2" data-src="https://www.youtube.com/embed/9-F74SLaPLg"></div>
+                        <div id="videoListId3" class="videoList videoList3" data-src="https://www.youtube.com/embed/5g3DnSzTlmY"></div>
+                        <div id="videoListId4" class="videoList videoList4" data-src="https://www.youtube.com/embed/7OparF5OEkk"></div>
+                        <div id="videoListId5" class="videoList videoList5" data-src="https://www.youtube.com/embed/9-F74SLaPLg"></div>
+                        <div id="videoListId6" class="videoList videoList6" data-src="https://www.youtube.com/embed/5g3DnSzTlmY"></div>
+                    </div><div class="videoPlayPage videoPlayPage2 clear">
+                        <div id="videoListId7" class="videoList videoList7" data-src="https://www.youtube.com/embed/5g3DnSzTlmY"></div>
+                    </div>
+                </div>   
+                <div id="videoListWrap_M">
+                    <div id="videoListId1" class="videoList videoList1" data-src="https://www.youtube.com/embed/7OparF5OEkk"></div>
+                    <div id="videoListId2" class="videoList videoList2" data-src="https://www.youtube.com/embed/9-F74SLaPLg"></div>
+                    <div id="videoListId3" class="videoList videoList3" data-src="https://www.youtube.com/embed/5g3DnSzTlmY"></div>
+                    <div id="videoListId4" class="videoList videoList4" data-src="https://www.youtube.com/embed/7OparF5OEkk"></div>
+                    <div id="videoListId5" class="videoList videoList5" data-src="https://www.youtube.com/embed/9-F74SLaPLg"></div>
+                    <div id="videoListId6" class="videoList videoList6" data-src="https://www.youtube.com/embed/5g3DnSzTlmY"></div>
+                    <div id="videoListId7" class="videoList videoList7" data-src="https://www.youtube.com/embed/5g3DnSzTlmY"></div>
+                </div>
+                <div id="videoListMove">
+                    <div class="prevBtn">1</div>
+                    <div class="nextBtn">2</div>
+                </div>                 
+            </div>
+        </div>
+    </section>
+
+    <aside>
+        <div id="imgPopup">
+            <div class="close">&Cross;</div>
+            <div class="slideWrap">
+                <iframe class="playVideo" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </aside>
+    
+    <footer>
+        <div id="footerWrap" class="bodyWrap font_1">
+            <div id="copylight">COPYRIGHT© 2018 by YOURSEASON. ALL RIGHTS RESERVED.</div>    
+            <div id="sns">
+                <ul>
+                    <li><a href="https://happytime079.blog.me"><img src="images/sns_blogger01.png" alt=""></a></li>
+                    <li><a href="https://www.instagram.com/studio.yourseason/"><img src="images/sns_instagram01.png" alt=""></a></li>
+                    <li><a href="https://www.youtube.com/channel/UCyrQQndaWz40nOWzNtGu8jQ"><img src="images/sns_youtube01.png" alt=""></a></li>
+                </ul>
+            </div>    
+        </div>
+    </footer>
+    <div id="topBtn"><a href="#"><i class="fa fa-angle-double-up" aria-hidden="true"></i></a></div>
+</body>
+</html>

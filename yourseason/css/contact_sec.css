@@ -1,0 +1,228 @@
+/* cc/contact_sec.css */
+
+/************************** 
+        섹션 영역 
+***************************/
+
+section {
+    /* border: 3px solid; */
+}
+
+#sectionWrap {
+    /* border: 2px solid red; */
+    position: relative;
+}
+
+#menu > ul > li:nth-child(5) > a {
+    color: #8B0000;
+}        
+
+#contactTitle {
+    text-align: center;
+}
+
+#conTit {
+    margin-bottom: 20px;
+}
+
+/*************************************/
+
+.priceMenuTab {
+    width: 930px;    
+    margin: 50px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.priceMenuBtn {
+    width: 265px;
+    height: 375px;
+    background: #5a5a5a;
+    position: relative;
+    cursor: pointer;
+}
+
+.priceMenuBtn:hover {
+    background: black;
+}
+
+.small {
+    position: absolute;
+    width: 240px;
+    height: 340px;
+    border: 2px solid white;
+    top: calc(50% - 170px); 
+    left: calc(50% - 120px);
+}
+
+.small p {
+    text-align: center;
+    font-size: 35px;
+    /* font-weight: bold; */
+    color: white;
+    /* line-height: 340px; */
+}
+
+.smallTxt {
+    /* border: 1px solid black; */
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+
+}
+/*************************************/
+
+.pricePopup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 1);
+    display: none;    
+}
+
+.MenuInfo {
+    position: absolute;
+    border: 1px solid;
+    /* padding: 20px;
+    width: 930px;
+    left: calc(50% - 465px);
+    height: 900px;
+    top: calc(50% - 450px); */
+    width: 90%;
+    height: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 50px;
+    padding-bottom: 50px;
+}
+
+.InfoClose {
+    position: absolute;
+    top: 0px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.popupTit {
+    font-size: 45px;
+    text-align: center;
+    margin: 15px 0 60px 0;
+}
+
+/*************************************/
+
+#contactWrap {
+    /* border: 1px solid blue; */
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/*************************************/
+
+.contact_form {
+    width: 70%;
+    padding: 20px 20px 20px 0;
+    /* border: 1px solid black; */
+    position: relative;
+}
+
+.contact_form input[type=text],
+.contact_form select,
+.contact_form textarea,
+.contact_form input[type=email],
+.contact_form input[type=tel] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #A0A09F;
+    /* border-radius: 4px; */
+    margin-top: 6px;
+    margin-bottom: 16px;
+    background: rgba(255, 255, 255, 0.5);
+    /* 높이 조절만 가능하도록  */
+    /* resize: vertical; */
+}
+
+#datekind {
+  display: flex;
+  justify-content: space-between;
+}
+
+.contact_form .dateForm,
+.contact_form .kindForm {
+    width: 48%;        
+}
+
+.contact_form textarea {
+    height: 200px;
+    resize: none;
+    margin-bottom: 60px;
+}
+
+#submit,
+#submitKr {
+    height: 50px;
+    width: 150px;
+    background-color: #292929;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    position: absolute;            
+    left: 50%;
+    transform: translateX(-50%);            
+    bottom: 10px;           
+}
+
+#submit:hover,
+#submitKr:hover {
+    background-color: #A0A09F;
+    color: #292929;
+    font-weight: bold;
+}
+
+/*************************************/
+
+#contactInfo {
+    border: 1px solid #A0A09F;
+    width: 25%;
+    height: 290px;
+    margin-top: 20px;
+    margin-left: 20px;
+    padding: 20px 0;
+}
+
+#kakao,
+#insragrem,
+#address {            
+    height: 80px;
+    text-align: center;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#kakao h3, 
+#insragrem h3,
+#address h3 {
+    /* border: 2px solid blue; */
+    /* margin-top: 20px; */
+    height: 40px;
+    line-height: 40px;
+}
+
+#kakao p,
+#insragrem p,
+#address p {
+    /* border: 2px solid blue; */
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 10px;
+}
+

@@ -1,0 +1,55 @@
+/* cc/about_sec.css */
+
+/************************** 
+        섹션 영역 
+***************************/
+section {
+    /* border: 3px solid; */
+}
+
+#sectionWrap {
+    /* border: 2px solid red; */
+    position: relative;
+}
+
+#menu > ul > li:nth-child(2) > a {
+    color: #8B0000;
+}
+
+/*
+#aboutImg {            
+     border: 1px solid;
+    width: 950px;
+     min-width: 600px; 
+    height: 450px;
+    margin: 0 auto;
+    background-image: url('../images/aboutImg.jpg');
+    background-position: center;
+    background-size: cover;
+} 
+*/
+
+.aboutVid {
+    text-align: center;
+    margin: 0 auto;
+}
+
+
+.aboutTxtClass {
+    width: 800px;
+    margin: 0px auto;
+    /* border: 1px solid red; */
+}
+
+.aboutTxtClass p {
+    margin: 30px 0;
+}
+
+.aboutTxt1 {
+    font-size: 72px;
+}
+
+.aboutTxt2, 
+.aboutTxt3 {
+    font-size: 15px;
+}

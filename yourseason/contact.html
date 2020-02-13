@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>yourseason</title>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Amiri|Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/contact_sec.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+        $(function(){
+
+
+            $('.priceMenuBtn').click(function(){   // 메뉴 버튼 클릭 시 상세 내용 팝업창 오픈
+
+                $('.pricePopup').fadeIn();
+                $('.MenuInfo').hide();
+
+                var popupTit=$(this).attr('id');
+                console.log(popupTit);
+                $('.'+popupTit+'Info').show();
+
+                var winh = $(window).innerHeight();
+                var infoH = $('.MenuInfo').height();
+                infoH+=150;
+                console.log("윈도우창 : "+winh+" / 인포창 : "+infoH);
+                if ( winh <= infoH ) {
+                    $('.MenuInfo').css("overflow","scroll");
+                }
+
+            });
+
+            $('.InfoClose').click(function(){      // 팝업창 클로즈 버튼 클릭 시, 닫기
+                $('.pricePopup').fadeOut();
+            });
+
+
+
+            
+
+
+            $(window).resize(function(){
+
+                var winW = $(window).innerWidth();
+                var winH = $(window).innerHeight();
+                console.log(winW, winH);    
+
+                $('.pricePopup').css({
+                    'width': winW,
+                    'height': winH
+                });  
+
+                console.log('팝업창 : '+$('.pricePopup').width(), $('.pricePopup').height());
+
+                
+            });
+
+            // var mql = window.matchMedia("(orientation: portrait)");
+
+            // // If there are matches, we're in portrait
+            // if(mql.matches) {  
+            //     // Portrait orientation
+            // } else {  
+            //     // Landscape orientation
+            //     var winW = $(window).innerWidth();
+            //         var winH = $(window).innerHeight();
+            //         console.log(winW, winH);    
+
+            //         $('.pricePopup').css({
+            //             'width': winW,
+            //             'height': winH
+            //         });     
+            // }
+
+            // // Add a media query change listener
+            // mql.addListener(function(m) {
+            //     if(m.matches) {
+            //         // Changed to portrait
+            //     }
+            //     else {
+            //         // Changed to landscape
+
+            //         var winW = $(window).innerWidth();
+            //         var winH = $(window).innerHeight();
+            //         console.log(winW, winH);    
+
+            //         $('.pricePopup').css({
+            //             'width': winW,
+            //             'height': winH
+            //         }); 
+            //     }
+            // });
+
+        });
+    </script>
+    <style>
+
+        /* @media screen and (orientation: portrait) {
+            .pricePopup {
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 1000;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(200, 150, 10, 1);
+            }
+        } */
+
+        /* @media screen and (orientation: landscape) {
+        
+            
+
+        } */
+
+        @media screen and (max-width: 1019px) and (min-width: 481px) {
+
+            .bodyWrap {
+                width: 100%;
+            }
+
+            #logo {
+                left: 50%;
+                transform: translateX(-50%);
+               
+            }
+
+            #menu {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            /*************************************/
+
+            .priceMenuTab {
+                width: 95%;
+                /* border: 1px solid red; */
+            }
+
+            .priceMenuBtn {
+                width: 32%;
+                height: 40vh;
+            }
+
+            .small {
+                width: 90%;
+                height: 35vh;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            .small p {
+                font-size: 4vw;
+            }
+
+
+            /*************************************/
+
+            .pricePopup {
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 1000;
+                width: 100%;
+                height: 120vh;
+                background: rgba(255, 50, 50, 1);
+                color: white;
+            }
+
+            .MenuInfo {
+                width: 90%;
+                height: auto;
+                left: 50%;
+                transform: translateX(-50%);
+                top: 40px;
+                padding-bottom: 50px;
+                /* overflow: scroll; */
+            }
+
+
+
+        }
+
+        @media screen and (max-width: 480px) {
+
+            .priceMenuTab {
+                display: block;
+                width: 100%;
+                /* border: 1px solid red; */
+            }
+
+            .priceMenuBtn {
+                width: 100%;
+                height: 240px;
+                margin: 10px 0 20px 0;
+            }
+
+            .small {
+                width: 90%;
+                height: 200px;
+                top: calc(50% - 100px); 
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            /*************************************/
+
+            .MenuInfo {
+                width: 95%;
+                height: auto;
+                left: 50%;
+                transform: translateX(-50%);
+                top: 20px;
+            }
+
+            .InfoClose {
+                top: -25px;
+                right: 2%;
+            }
+
+            /* .pricePopup,
+            .MenuInfo,
+            .InfoClose,
+            .popupContent,
+            .popupTit {
+                border: 1px solid red;
+            } */
+
+            .popupTit {
+                font-size: 9vw;
+                text-align: center;
+                margin: 30px 0 40px 0;
+            }
+
+            /*************************************/
+
+            #contactWrap {
+                /* border: 1px solid blue; */
+                margin-top: 50px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            #datekind {
+                display: block;
+            }
+            
+            .contact_form .dateForm,
+            .contact_form .kindForm {
+                width: 100%;        
+            }
+
+            #submit,
+            #submitKr {
+                right: 0px;
+            }
+        
+            .contact_form {
+                order: 2;
+                width: 100%;
+                padding-right: 0;
+                margin-top: 20px;
+            }
+
+            /*************************************/
+
+            
+            #contactInfo {
+                order: 1;
+                width: 100%;
+                height: 150px;
+                /*height: 120px;*/
+                margin: 0;
+                padding: 20px 10px;
+            }
+
+            
+            #infoWrap {
+                /* display: flex; */
+            }
+
+            #kakao,
+            #insragrem,
+            #address {            
+                height: 40px;
+                text-align: center;
+                margin: 0 auto;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            #kakao h3, 
+            #insragrem h3,
+            #address h3 {
+                /* border: 2px solid blue; */
+                /* margin-top: 20px; */
+                height: 30px;
+                line-height: 30px;
+                font-size: 8vw;
+            }
+
+            #kakao p,
+            #insragrem p,
+            #address p {
+                /* border: 2px solid blue; */
+                height: 20px;
+                line-height: 20px;
+                margin-bottom: 10px;
+                font-size: 4vw;
+            }
+        }
+    </style>
+</head>
+<body>
+        <header>
+            <div id="headerWrap" class="bodyWrap">
+                <div id="logo">
+                    <a href="index.html">
+                        <p class="BigLogo">YourSeason</p>
+                        <p class="smallLogo">P H O T O G R P H Y</p>
+                    </a>
+                </div>
+                <nav id="menu" class="font_0">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li class="topMenu"><a href="porifolio.html">Portfolio</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <nav id="menu_Mb" class="font_0">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-bars" aria-hidden="true"></i></a>
+                            <ul class="subMenu_Mb font_1">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="porifolio.html">Portfolio</a></li>
+                                <li><a href="blog.html">Blog</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    <section class="sectionPage">
+        <div id="sectionWrap" class="bodyWrap">
+            <!-- <div id="pageInfo" class="font_5">
+                <div id="pageSrc">
+                    <i class="fa fa-home" aria-hidden="true"></i><span> > CONTACT</span>
+                </div>
+                <div id="pageLanguage">
+                    <span class="lanClass lanEn">EN</span><span> / </span><span class="lanClass lanKr">KR</span>
+                </div>
+            </div> -->
+            <div id="priceMenu">
+                <div class="priceMenuTab">
+                    <div id="event" class="priceMenuBtn">
+                        <div class="small">
+                            <div class="smallTxt">
+                                <p>Event</p>
+                                <p>Price</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="reservation" class="priceMenuBtn">
+                        <div class="small">
+                            <div class="smallTxt">
+                                <p>Reservations</p>
+                                <p>Method</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="basic" class="priceMenuBtn">
+                        <div class="small">
+                            <div class="smallTxt">
+                                <p>--</p>
+                                <p>--</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pricePopup">
+                    <div class="eventInfo MenuInfo">
+                        <div class="InfoClose">&Cross;</div>
+                        <div class="popupContent">
+                            <div class="popupTit">2019 Event Price</div>
+                            <div class="note">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis dolorum beatae vero dicta, corrupti esse!
+                                Temporibus, blanditiis magnam ratione quae quod harum officiis ad, nam incidunt quos beatae repellendus ea.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reservationInfo MenuInfo">
+                        <div class="InfoClose">&Cross;</div>
+                        <div class="popupContent">
+                            <div class="popupTit">Reservations Method</div>
+                            <div class="note1 note">
+                                <div class="note1Tit noteTit font_3">
+                                    <p>1. Confir mation of reservation</p>
+                                </div>
+                                <div class="note1Txt noteTxt font_4">
+                                    <p>
+                                        Please contact [CONTANT] page, we will guide you to shoot.
+                                        If you do not have enough information, please contact us within 48 hours. Please check the confirmation
+                                        e-mail and deposit.
+                                        The deposit is 20% of the total amount, and the balance is paid in the previous year.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="note2 note">
+                                <div class="note2Tit noteTit font_3">
+                                    <p>2. Change / Cancellation / Refund</p>
+                                </div>
+                                <div class="note2Txt noteTxt font_4">
+                                    <p>
+                                        Changing the inspection date is not possible beyond the above conditions. Changing the shooting date does
+                                        not satisfy the above conditions.
+                                        Requests to change other shooting dates will be charged at an additional cost at least three days in
+                                        advance.
+                                        Also, when you change the shooting date, the date can not be adjusted.
+                                    </p>
+                                    <p><strong>* cancel *</strong></p>
+                                    <p>
+                                        If you cancel the filming, you will receive a full refund within 7 days of the contract. Cancellations due
+                                        to personal reasons will be subject to penalty.
+                                    </p>
+                                    <p>- If canceled 14 days before shooting, 50%</p>
+                                    <p>- If canceled 7 days before shooting, 80%</p>
+                                </div>
+                            </div>
+                            <div class="note3 note">
+                                <div class="note3Tit noteTit font_3">
+                                    <p>3. Other Checks</p>
+                                </div>
+                                <div class="note3Txt noteTxt font_4">
+                                    <p>- The original file was sent within 2 weeks after the shooting.</p>
+                                    <p>- Movement between places appears at the time of picture taking.</p>
+                                    <p>- In case of calibration, face correction, calibration and synthesis are not performed.</p>
+                                    <p>- In the humorous season, take natural pictures and shoot with flash and tripod.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="basicInfo MenuInfo">
+                        <div class="InfoClose">&Cross;</div>
+                        <div class="popupContent">
+                            <div class="popupTit">-</div>
+                            <div class="note">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis dolorum beatae vero dicta, corrupti esse! Temporibus, blanditiis magnam ratione quae quod harum officiis ad, nam incidunt quos beatae repellendus ea.
+                            </div>
+                        </div>
+                    </div>
+                </div>           
+            </div>
+            <div id="contactTitle">
+                    <p id="conTit" class="conTitClass font_2-2">Contact Me</p>
+                    <div id="conTxt" class="conTitClass font_4">
+                        <p id="txtEn">
+                            Use this form to send me an email with your basic details to start the ball rolling to secure me to photograph your Event!
+                        </p>
+                    </div>
+            </div>
+            <div id="contactWrap">
+                <div id="contact_form" class="contact_form font_5">
+                    <!-- 폼태그 -->        
+                    <div class="txtEn">      
+                        <form action="contact_meEn.php" method="post">
+                            <label for="name">* Name<small></small></label>
+                            <input type="text" id="name" name="name" placeholder="First Name/Last Name" required>
+                            <label for="email">* Email <small></small></label>
+                            <input type="email" id="email" name="email" placeholder="--------@--------" required>
+                            <label for="phone">* Phone Number<small></small></label>
+                            <input type="tel" id="phone" name="phone" placeholder="(00) 000-0000-0000" required>
+                            <div id="datekind">
+                                <div class="dateForm">
+                                    <label for="date">* Date of the event<small></small></label>
+                                    <input type="text" id="date" name="date" placeholder="DD/MM/YYYY" required>
+                                </div>
+                                <div class="kindForm">
+                                    <label for="kind">* Kind of Photo shoot<small></small></label>
+                                    <input type="text" id="kind" name="kind" placeholder="Wedding/Date/Baby/Fmaily...." required>
+                                </div>
+                            </div>
+                            <label for="message">* Message<small></small></label>
+                            <textarea id="message" name="message" placeholder="Please enter other details." required></textarea>
+                            <input type="submit" value="Send Message" id="submit">
+                        </form>
+                    </div>
+                </div>
+                <div id="contactInfo">
+                    <div id="infoWrap">
+                        <div id="kakao">
+                            <p class="font_3">Phone</p>
+                            <p class="font_5">(+61) 0413-952-622</p>
+                        </div>
+                        <div id="insragrem">
+                            <p class="font_3">Insragrem</p>
+                            <p class="font_5"><a href="https://www.instagram.com/studio.yourseason/">studio.yourseason</a></p>
+                        </div>
+                        <div id="address">
+                            <p class="font_3">address</p>
+                            <p class="font_5">Whatley creacent Mayland, WA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div id="footerWrap" class="bodyWrap font_1">
+            <div id="copylight">COPYRIGHT© 2018 by YOURSEASON. ALL RIGHTS RESERVED.</div>    
+            <div id="sns">
+                <ul>
+                    <li><a href="https://happytime079.blog.me" target="_new"><img src="images/sns_blogger01.png" alt=""></a></li>
+                    <li><a href="https://www.instagram.com/studio.yourseason/" target="_new"><img src="images/sns_instagram01.png" alt=""></a></li>
+                    <li><a href="https://www.youtube.com/channel/UCyrQQndaWz40nOWzNtGu8jQ" target="_new"><img src="images/sns_youtube01.png" alt=""></a></li>
+                </ul>
+            </div>    
+        </div>
+    </footer>
+    <div id="topBtn"><a href="#"><i class="fa fa-angle-double-up" aria-hidden="true"></i></a></div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+/* cc/price_sec.css */
+
+/************************** 
+                섹션 영역 
+***************************/
+section {
+    /* border: 3px solid; */
+}
+
+#sectionWrap {
+    /* border: 1px solid red; */
+    position: relative;
+}
+
+#menu>ul>li:nth-child(4)>a {
+    color: #8B0000;
+}
+
+#section1 {
+    margin-bottom: 40px;
+}
+
+#priceWrap {
+    width: 80%;            
+    margin: 0 auto;
+    border: 1px solid #A0A09F; 
+}
+
+.price {
+    width: 100%;            
+    margin: 0 auto;
+    display: flex;
+    padding: 20px 10px;
+    /* border: 2px solid green; */
+}
+
+.price1,
+.price2 {
+    /* border: 2px solid blue; */
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.price1 {
+    border-right: 1px solid #A0A09F; 
+}
+
+.price .priceTit {
+    text-align: center;
+    /* border: 1px solid; */
+}
+
+
+.price .priceTxt {
+    text-align: center;
+    /* border: 1px solid; */
+    margin-top: 50px;
+}
+
+.price .priceTxt p {
+    padding: 5px;
+}
+
+.other {
+    /* border: 4px solid red; */
+    margin: 20px 40px 20px 40px;
+}
+
+.note .noteTxt {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    text-align: justify;
+}
+
+.note .note3Txt {
+    margin-bottom: 0;
+}
